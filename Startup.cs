@@ -16,8 +16,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using PostgresCRUD.DataAccess;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace INTEX2_group1_3
 {
@@ -39,6 +39,8 @@ namespace INTEX2_group1_3
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                     .AddEntityFrameworkStores<PostgreSqlContext>()
                     .AddDefaultTokenProviders();
+
+
             
 
             services.Configure<CookiePolicyOptions>(options =>
@@ -46,6 +48,11 @@ namespace INTEX2_group1_3
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+            services.AddHttpsRedirection(options =>
+            {
+                options.RedirectStatusCode = StatusCodes.Status308PermanentRedirect;
+                options.HttpsPort = 443;
             });
 
 
@@ -91,6 +98,7 @@ namespace INTEX2_group1_3
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseCookiePolicy();
+            app.UseHttpsRedirection();
 
             app.UseEndpoints(endpoints =>
             {

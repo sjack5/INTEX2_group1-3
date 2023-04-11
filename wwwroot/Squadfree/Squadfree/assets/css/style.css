@@ -1193,7 +1193,7 @@ section {
 
 .contact .info-box i {
   font-size: 32px;
-  color: #67b0d1;
+  color: #938479;
   border-radius: 50%;
   padding: 8px;
   border: 2px dotted #f0f7fa;
@@ -1320,7 +1320,7 @@ section {
   margin-top: -90px;
   margin-bottom: 15px;
   background: white;
-  color: #2f4d5a;
+  color: #b2a495;
   border-top: 4px solid #67b0d1;
   text-align: center;
   padding: 30px 20px;
@@ -1357,7 +1357,7 @@ section {
     }
 
 #footer .footer-top .social-links a:hover {
-  background: #67b0d1;
+  background: #d9d2ca;
   color: #fff;
   text-decoration: none;
 }

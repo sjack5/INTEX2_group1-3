@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Identity;
 
 namespace INTEX2_group1_3.Models
 {
-    public class User : IdentityUser<long>
+    public class User : IdentityUser
     {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 }
