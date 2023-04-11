@@ -1,0 +1,28 @@
+﻿@{
+    var showBanner = !Context.Request.Cookies.ContainsKey(".AspNet.Consent");
+}
+@if (showBanner)
+{
+    <div class="fixed-bottom bg-light p-2" id="cookie-banner">
+        <div class="container">
+            <div class="d-flex justify-content-between">
+                <div class="d-flex">
+                    <p class="mb-0">We use cookies to ensure you get the best experience on our website.</p>
+                </div>
+                <div>
+                    <button class="btn btn-primary btn-sm" id="accept-cookies">I Understand</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("accept-cookies").onclick = function () {
+            var date = new Date();
+            date.setFullYear(date.getFullYear() + 1);
+
+            document.cookie = ".AspNet.Consent=yes; expires=" + date.toUTCString() + "; path=/";
+            document.getElementById("cookie-banner").style.display = "none";
+        };
+    </script>
+}

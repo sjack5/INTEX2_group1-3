@@ -13,6 +13,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
+using PostgresCRUD.DataAccess;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 
 namespace INTEX2_group1_3
 {
@@ -28,11 +33,24 @@ namespace INTEX2_group1_3
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<PostgreSqlContext>(options =>
+                options.UseNpgsql(Configuration["ConnectionString"]));
+
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                    .AddEntityFrameworkStores<PostgreSqlContext>()
+                    .AddDefaultTokenProviders();
+            
+
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
+
+
+
             services.AddControllersWithViews();
             services.AddRazorPages();
 
@@ -72,6 +90,7 @@ namespace INTEX2_group1_3
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseCookiePolicy();
 
             app.UseEndpoints(endpoints =>
             {
