@@ -74,16 +74,16 @@
                     }
                 </select>
             </div>
-            @*<div class="col-md-3">
+            <div class="col-md-3">
                 <label for="burialId">Burial ID:</label>
-                <select class="form-control" id="burialId">
-                    <option value="">Select a burial ID</option>
-                    @foreach (long burialid in Model.Burials.Select(b => b.Burialid).Distinct())
+                <input type="text" class="form-control" id="burialId" placeholder="Search for a burial ID">
+                <datalist id="burialIdList">
+                    @foreach (long burialid in Model.Burials.Where(b => b.Burialid != null).Select(b => b.Burialid).Distinct())
                     {
                         <option value="@burialid">@burialid</option>
                     }
-                </select>
-            </div>*@
+                </datalist>
+            </div>
             <div class="col-md-3">
                 <label for="hairColor">Hair Color:</label>
                 <select class="form-control" id="hairColor">
@@ -111,7 +111,7 @@
 </div>
 <!-- Your existing table code here -->
 <!-- Add more dropdown filters in the same manner -->
-</div>
+
 <table class="table">
     <thead>
         <tr>
@@ -167,5 +167,20 @@
             targetElement.classList.toggle('collapse');
             targetElement.classList.toggle('show');
         });
+    });
+</script>
+<script>
+    var input = document.getElementById('burialId');
+    var list = document.getElementById('burialIdList');
+    input.addEventListener('input', function () {
+        var value = input.value;
+        var options = list.options;
+        for (var i = 0; i < options.length; i++) {
+            var option = options[i];
+            if (option.value.indexOf(value) === 0) {
+                option.selected = true;
+                return;
+            }
+        }
     });
 </script>

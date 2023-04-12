@@ -6,12 +6,17 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.AspNetCore.Identity;
+using INTEX2_group1_3.Models;
 
 namespace INTEX2_group1_3.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<User>
     {
         private readonly IConfiguration _configuration;
+
+        public ApplicationDbContext(DbContextOptions options) : base(options)
+        {
+        }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IConfiguration configuration)
             : base(options)
@@ -19,10 +24,10 @@ namespace INTEX2_group1_3.Data
             _configuration = configuration;
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseNpgsql(_configuration.GetConnectionString("YourDbContextConnection"));
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseNpgsql(_configuration.GetConnectionString("Host=localhost;Port=5432;Username=postgres;Password=POSTGRESpencer54321#;Database=TheMummyProject;"));
+        //}
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

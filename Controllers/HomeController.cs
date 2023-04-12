@@ -59,6 +59,8 @@ namespace INTEX2_group1_3.Controllers
 
             return View(x);
         }
+
+
         [HttpGet]
         public IActionResult Edit(long id)
         {
