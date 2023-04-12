@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Http;
 using PostgresCRUD.DataAccess;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using INTEX2_group1_3.Models;
 
 namespace INTEX2_group1_3
 {
@@ -34,14 +35,16 @@ namespace INTEX2_group1_3
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<PostgreSqlContext>(options =>
-                options.UseNpgsql(Configuration["ConnectionString"]));
+            options.UseNpgsql(Configuration.GetConnectionString("YourDbContextConnection")));
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                     .AddEntityFrameworkStores<PostgreSqlContext>()
                     .AddDefaultTokenProviders();
 
 
-            
+            services.AddControllersWithViews();
+            services.AddDbContext<TheMummyProjectContext>(options =>
+                options.UseNpgsql(Configuration.GetConnectionString("YourDbContextConnection")));
 
             services.Configure<CookiePolicyOptions>(options =>
             {
