@@ -21,7 +21,7 @@ namespace INTEX2_group1_3.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql(_configuration.GetConnectionString("DefaultConnection"));
+            optionsBuilder.UseNpgsql(_configuration.GetConnectionString("YourDbContextConnection"));
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
