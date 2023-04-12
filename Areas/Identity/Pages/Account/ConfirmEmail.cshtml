@@ -4,4 +4,18 @@
     ViewData["Title"] = "Confirm email";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h2>@ViewData["Title"]</h2>
+<div>
+    @if (Model.ShowConfirmation)
+    {
+        <p>
+            Thank you for confirming your email. You will now be redirected to set up Two-Factor Authentication.
+        </p>
+    }
+    else
+    {
+        <p>
+            An error occurred while confirming your email. Please try again.
+        </p>
+    }
+</div>/h1>

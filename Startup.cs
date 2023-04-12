@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Http;
 using PostgresCRUD.DataAccess;
 using Microsoft.AspNetCore.Mvc;
@@ -37,9 +37,13 @@ namespace INTEX2_group1_3
             services.AddDbContext<PostgreSqlContext>(options =>
             options.UseNpgsql(Configuration.GetConnectionString("YourDbContextConnection")));
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                    .AddEntityFrameworkStores<PostgreSqlContext>()
-                    .AddDefaultTokenProviders();
+            services.AddDefaultIdentity<IdentityUser>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = true;
+                options.Tokens.AuthenticatorTokenProvider = TokenOptions.DefaultAuthenticatorProvider;
+            })
+            .AddEntityFrameworkStores<PostgreSqlContext>()
+            .AddDefaultTokenProviders();
 
 
             services.AddControllersWithViews();
@@ -112,12 +116,8 @@ namespace INTEX2_group1_3
             });
 
             //This is our CSP Header
-            app.Use(async (ctx, next) =>
-            {
-                ctx.Response.Headers.Add("Content-Security-Policy",
-                "default-src 'self'");
-                await next();
-            });
+
         }
+
     }
 }

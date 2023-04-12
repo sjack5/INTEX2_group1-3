@@ -10,5 +10,6 @@ namespace INTEX2_group1_3.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        
     }
 }

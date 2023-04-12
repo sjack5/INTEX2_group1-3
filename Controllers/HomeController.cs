@@ -15,7 +15,7 @@ namespace INTEX2_group1_3.Controllers
     {
         //private  IBurialRepository repo;
         private TheMummyProjectContext context;
-        public HomeController(/*IBurialRepository temp, */TheMummyProjectContext con)
+        public HomeController(/*IBurialRepository temp,*/ TheMummyProjectContext con)
         {
             //repo = temp;
             context = con;
@@ -56,11 +56,42 @@ namespace INTEX2_group1_3.Controllers
                 .Skip((pageNum - 1) * pageSize)
                 .ToList()
             };
+            return View(x);
+        }
+
+        public IActionResult Filter(string sex, string burialDepth)
+        {
+
+            var x = new SearchViewModel
+            {
+                Burials = context.Burialmain
+                .Where(b => b.Sex == sex & b.Depth == burialDepth)
+                .ToList()
+            };
 
             return View(x);
         }
 
 
+        [HttpGet]
+        public IActionResult Add()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Add(Burialmain ar)
+        {
+            if (ModelState.IsValid)
+            {
+                context.Add(ar);
+                context.SaveChanges();
+                return View("Confirmation", ar);
+            }
+            else
+            {
+                return View();
+            }
+        }
         [HttpGet]
         public IActionResult Edit(long id)
         {
@@ -87,6 +118,7 @@ namespace INTEX2_group1_3.Controllers
         {
             context.Burialmain.Remove(bm);
             context.SaveChanges();
+
             return RedirectToAction("Search");
         }
         public IActionResult Details(int id)

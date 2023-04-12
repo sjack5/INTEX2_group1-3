@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Squadfree Bootstrap Template - Index</title>
+    <title>The Mummy Project</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -53,8 +53,15 @@
                     <li><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="Search">Records</a></li>
                     <li><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="SupervisedPage">Supervised</a></li>
                     <li><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="UnsupervisedPage">Unsupervised</a></li>
-                    <li><partial name="_LoginPartial" />
-                </ul>
+                    <li>
+                        <partial name="_LoginPartial" />
+                        @if (User.IsInRole("Admin"))
+                        {
+                        <li>
+                            <a asp-controller="Admin" asp-action="Index" class="nav-link">Admin Portal</a>
+                        </li>
+                    }
+                    </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
     </header><!-- End Header -->

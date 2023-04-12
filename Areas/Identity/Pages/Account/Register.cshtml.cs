@@ -98,7 +98,7 @@ namespace INTEX2_group1_3.Areas.Identity.Pages.Account
                     else
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
+                        return RedirectToPage("./Manage/EnableAuthenticator");
                     }
                 }
                 foreach (var error in result.Errors)

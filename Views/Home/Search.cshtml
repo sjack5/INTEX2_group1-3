@@ -1,9 +1,9 @@
-﻿@{
-}
-@model SearchViewModel
+﻿@model SearchViewModel
 @{
     ViewBag.Title = "Records";
 }
+<br />
+<br />
 <br />
 <br />
 <br />
@@ -18,129 +18,146 @@
 <!-- Template Main CSS File -->
 <link href="assets/css/style.css" rel="stylesheet">
 <h2>Records</h2>
-<button class="btn btn-primary mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#filtersCollapse" aria-expanded="false" aria-controls="filtersCollapse">
-    Filters
-</button>
-<div class="collapse" id="filtersCollapse">
-    <div class="card card-body">
-        <div class="row">
-            <div class="col-md-3">
-                <label for="sex">Sex:</label>
-                <select class="form-control" id="sex">
-                    <option value="">Select a sex</option>
-                    @foreach (string sex in Model.Burials.Select(b=>b.Sex).Distinct())
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-primary mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#filtersCollapse" aria-expanded="false" aria-controls="filtersCollapse">
+                Filters
+            </button>
+            <form asp-controller="Home" asp-action="Search" method="get">
+                <div class="collapse" id="filtersCollapse">
+                    <div class="card card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="sex">Sex:</label>
+                                <select class="form-control" id="sex" name="sex">
+                                    <option value="">Select a sex</option>
+                                    @foreach (string sex in Model.Burials.Select(b => b.Sex).Distinct())
+                                    {
+                                        <option value="@sex">@sex</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+            <label for="burialDepth">Burial Depth:</label>
+            <select class="form-control" id="burialDepth" name="burialDepth">
+                <option value="">Select a depth</option>
+                @foreach (string depth in Model.Burials.Select(b => b.Depth).Distinct())
+                {
+                    <option value="@depth">@depth</option>
+                }
+            </select>
+        </div>
+        @*<div class="col-md-3">
+            <label for="estimateStature">Estimate Stature:</label>
+            <select class="form-control" id="estimateStature">
+                <option value="">Select a stature</option>
+                @foreach (string length in Model.Burials.Select(b => b.Length).Distinct())
+                {
+                    <option value="@length">@length</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="ageAtDeath">Age at Death:</label>
+            <select class="form-control" id="ageAtDeath">
+                <option value="">Select an age</option>
+                @foreach (string age in Model.Burials.Select(b => b.Ageatdeath).Distinct())
+                {
+                    <option value="@age">@age</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="headDirection">Head Direction:</label>
+            <select class="form-control" id="headDirection">
+                <option value="">Select a direction</option>
+                @foreach (string headdirection in Model.Burials.Select(b => b.Headdirection).Distinct())
+                {
+                    <option value="@headdirection">@headdirection</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="burialId">Burial ID:</label>
+            <input type="text" class="form-control" id="burialId" placeholder="Search for a burial ID">
+            <datalist id="burialIdList">
+                @foreach (long burialid in Model.Burials.Where(b => b.Burialid != null).Select(b => b.Burialid).Distinct())
+                {
+                    <option value="@burialid">@burialid</option>
+                }
+            </datalist>
+        </div>
+        <div class="col-md-3">
+            <label for="hairColor">Hair Color:</label>
+            <select class="form-control" id="hairColor">
+                <option value="">Select a color</option>
+                @foreach (string haircolor in Model.Burials.Select(b => b.Haircolor).Distinct())
+                {
+                    <option value="@haircolor">@haircolor</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="presenceFaceBundle">Presence of Face Bundle:</label>
+            <select class="form-control" id="presenceFaceBundle">
+                <option value="">Select an option</option>
+                @foreach (string facebundles in Model.Burials.Select(b => b.Facebundles).Distinct())
+                {
+                    <option value="@facebundles">@facebundles</option>
+                }
+            </select>
+        </div>*@
+                            <!-- Add more dropdown filters in the same manner -->
+                            <input type="hidden" name="sex" value=""/>
+                            <input type="hidden" name="burialDepth" value="" />
+                            <button class="btn btn-primary btn-sm mt-3" type="submit" asp-controller="Home" asp-action="Filter">Submit</button>
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Square North/South</th>
+                        <th>Head Direction</th>
+                        <th>Sex</th>
+                        <th>Details</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                        <!-- Add other columns for the fields in the BurialMain model -->
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Burialmain b in Model.Burials)
                     {
-                        <option value="@sex">@sex</option>
+                        <tr>
+                            <td>@b.Id</td>
+                            <td>@b.Squarenorthsouth</td>
+                            <td>@b.Headdirection</td>
+                            <td>@b.Sex</td>
+                            <td><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="Details" asp-route-id="@b.Id">Details</a></td>
+                            <td><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="Edit" asp-route-id="@b.Id">Edit</a></td>
+                            <td><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="Delete" asp-route-id="@b.Id">Delete</a></td>
+                            <!-- Add other columns for the fields in the BurialMain model -->
+                        </tr>
                     }
-                </select>
-            </div>
-            <div class="col-md-3">
-                <label for="burialDepth">Burial Depth:</label>
-                <select class="form-control" id="burialDepth">
-                    <option value="">Select a depth</option>
-                    @foreach (string depth in Model.Burials.Select(b => b.Depth).Distinct())
-                    {
-                        <option value="@depth">@depth</option>
-                    }
-                </select>
-            </div>
-            <div class="col-md-3">
-                <label for="estimateStature">Estimate Stature:</label>
-                <select class="form-control" id="estimateStature">
-                    <option value="">Select a stature</option>
-                    @foreach (string length in Model.Burials.Select(b => b.Length).Distinct())
-                    {
-                        <option value="@length">@length</option>
-                    }
-                </select>
-            </div>
-            <div class="col-md-3">
-                <label for="ageAtDeath">Age at Death:</label>
-                <select class="form-control" id="ageAtDeath">
-                    <option value="">Select an age</option>
-                    @foreach (string age in Model.Burials.Select(b => b.Ageatdeath).Distinct())
-                    {
-                        <option value="@age">@age</option>
-                    }
-                </select>
-            </div>
-            <div class="col-md-3">
-                <label for="headDirection">Head Direction:</label>
-                <select class="form-control" id="headDirection">
-                    <option value="">Select a direction</option>
-                    @foreach (string headdirection in Model.Burials.Select(b => b.Headdirection).Distinct())
-                    {
-                        <option value="@headdirection">@headdirection</option>
-                    }
-                </select>
-            </div>
-            <div class="col-md-3">
-                <label for="burialId">Burial ID:</label>
-                <input type="text" class="form-control" id="burialId" placeholder="Search for a burial ID">
-                <datalist id="burialIdList">
-                    @foreach (long burialid in Model.Burials.Where(b => b.Burialid != null).Select(b => b.Burialid).Distinct())
-                    {
-                        <option value="@burialid">@burialid</option>
-                    }
-                </datalist>
-            </div>
-            <div class="col-md-3">
-                <label for="hairColor">Hair Color:</label>
-                <select class="form-control" id="hairColor">
-                    <option value="">Select a color</option>
-                    @foreach (string haircolor in Model.Burials.Select(b => b.Haircolor).Distinct()) 
-                    {
-                        <option value="@haircolor">@haircolor</option>
-                    }
-                </select>
-            </div>
-            <div class="col-md-3">
-                <label for="presenceFaceBundle">Presence of Face Bundle:</label>
-                <select class="form-control" id="presenceFaceBundle">
-                    <option value="">Select an option</option>
-                    @foreach (string facebundles in Model.Burials.Select(b => b.Facebundles).Distinct()) 
-                    {
-                        <option value="@facebundles">@facebundles</option>
-                    }
-                </select>
-            </div>
-            <!-- Add more dropdown filters in the same manner -->
-            <button class="btn btn-primary btn-sm mt-3" type="submit">Submit</button>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn-primary mb-3" asp-area="" asp-controller="Home" asp-action="Add">Add a Burial</a>
+            <br /><br />
+            <a></a>
         </div>
     </div>
 </div>
-<!-- Your existing table code here -->
-<!-- Add more dropdown filters in the same manner -->
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Square North/South</th>
-            <th>Head Direction</th>
-            <th>Sex</th>
-            <th>Details</th>
-            <th>Edit</th>
-            <th>Delete</th>
-            <!-- Add other columns for the fields in the BurialMain model -->
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (Burialmain b in Model.Burials)
-        {
-            <tr>
-                <td>@b.Id</td>
-                <td>@b.Squarenorthsouth</td>
-                <td>@b.Headdirection</td>
-                <td>@b.Sex</td>
-                <td><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="Details" asp-route-id="@b.Id">Details</a></td>
-                <td><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="Edit" asp-route-id="@b.Id">Edit</a></td>
-                <td><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="Delete" asp-route-id="@b.Id">Delete</a></td>
-                <!-- Add other columns for the fields in the BurialMain model -->
-            </tr>
-        }
-    </tbody>
-</table>
 @*<div>
         <a asp-action="Records" asp-route-page="@(Model.PageInfo.PageIndex - 1)" class="@(Model.PageInfo.HasPreviousPage ? "enabled" : "disabled")">Previous</a>
         <span>@Model.PageInfo.PageIndex of @Model.PageInfo.TotalPages</span>
