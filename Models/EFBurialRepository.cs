@@ -12,6 +12,7 @@ namespace INTEX2_group1_3.Models
         {
             context = temp;
         }
+       
         public IQueryable<Burialmain> Burials => context.Burials;
     }
 }

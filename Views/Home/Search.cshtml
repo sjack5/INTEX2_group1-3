@@ -28,9 +28,9 @@
                 <label for="sex">Sex:</label>
                 <select class="form-control" id="sex">
                     <option value="">Select a sex</option>
-                    @foreach (Burialmain b in Model.Burials)
+                    @foreach (string sex in Model.Burials.Select(b=>b.Sex).Distinct())
                     {
-                        <option value="@b.Sex">@b.Sex</option>
+                        <option value="@sex">@sex</option>
                     }
                 </select>
             </div>
@@ -38,9 +38,9 @@
                 <label for="burialDepth">Burial Depth:</label>
                 <select class="form-control" id="burialDepth">
                     <option value="">Select a depth</option>
-                    @foreach (Burialmain b in Model.Burials)
+                    @foreach (string depth in Model.Burials.Select(b => b.Depth).Distinct())
                     {
-                        <option value="@b.Depth">@b.Depth</option>
+                        <option value="@depth">@depth</option>
                     }
                 </select>
             </div>
@@ -48,9 +48,9 @@
                 <label for="estimateStature">Estimate Stature:</label>
                 <select class="form-control" id="estimateStature">
                     <option value="">Select a stature</option>
-                    @foreach (Burialmain b in Model.Burials)
+                    @foreach (string length in Model.Burials.Select(b => b.Length).Distinct())
                     {
-                        <option value="@b.Length">@b.Length</option>
+                        <option value="@length">@length</option>
                     }
                 </select>
             </div>
@@ -58,9 +58,9 @@
                 <label for="ageAtDeath">Age at Death:</label>
                 <select class="form-control" id="ageAtDeath">
                     <option value="">Select an age</option>
-                    @foreach (Burialmain b in Model.Burials)
+                    @foreach (string age in Model.Burials.Select(b => b.Ageatdeath).Distinct())
                     {
-                        <option value="@b.Ageatdeath">@b.Ageatdeath</option>
+                        <option value="@age">@age</option>
                     }
                 </select>
             </div>
@@ -68,29 +68,29 @@
                 <label for="headDirection">Head Direction:</label>
                 <select class="form-control" id="headDirection">
                     <option value="">Select a direction</option>
-                    @foreach (Burialmain b in Model.Burials)
+                    @foreach (string headdirection in Model.Burials.Select(b => b.Headdirection).Distinct())
                     {
-                        <option value="@b.Headdirection">@b.Headdirection</option>
+                        <option value="@headdirection">@headdirection</option>
                     }
                 </select>
             </div>
-            <div class="col-md-3">
+            @*<div class="col-md-3">
                 <label for="burialId">Burial ID:</label>
                 <select class="form-control" id="burialId">
                     <option value="">Select a burial ID</option>
-                    @foreach (Burialmain b in Model.Burials)
+                    @foreach (long burialid in Model.Burials.Select(b => b.Burialid).Distinct())
                     {
-                        <option value="@b.Burialid">@b.Burialid</option>
+                        <option value="@burialid">@burialid</option>
                     }
                 </select>
-            </div>
+            </div>*@
             <div class="col-md-3">
                 <label for="hairColor">Hair Color:</label>
                 <select class="form-control" id="hairColor">
                     <option value="">Select a color</option>
-                    @foreach (Burialmain b in Model.Burials)
+                    @foreach (string haircolor in Model.Burials.Select(b => b.Haircolor).Distinct()) 
                     {
-                        <option value="@b.Haircolor">@b.Haircolor</option>
+                        <option value="@haircolor">@haircolor</option>
                     }
                 </select>
             </div>
@@ -98,9 +98,9 @@
                 <label for="presenceFaceBundle">Presence of Face Bundle:</label>
                 <select class="form-control" id="presenceFaceBundle">
                     <option value="">Select an option</option>
-                    @foreach (Burialmain b in Model.Burials)
+                    @foreach (string facebundles in Model.Burials.Select(b => b.Facebundles).Distinct()) 
                     {
-                        <option value="@b.Facebundles">@b.Facebundles</option>
+                        <option value="@facebundles">@facebundles</option>
                     }
                 </select>
             </div>
