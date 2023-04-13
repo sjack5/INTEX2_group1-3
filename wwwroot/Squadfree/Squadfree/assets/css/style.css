@@ -83,6 +83,18 @@ h6 {
   }
 }
 
+
+.brown-btn {
+    background-color: rgba(72, 60, 50, 0.9);
+    color: #FFFFFF;
+}
+
+    .brown-btn:hover,
+    .brown-btn:focus,
+    .brown-btn:active {
+        background-color: rgba(72, 60, 50, 0.9);
+        color: #FFFFFF;
+    }
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/

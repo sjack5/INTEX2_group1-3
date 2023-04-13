@@ -1,7 +1,7 @@
 ﻿@page
 @model ConfirmEmailModel
 @{
-    ViewData["Title"] = "Confirm email";
+    ViewData["Title"] = "Confirm User Creation";
 }
 
 <h2>@ViewData["Title"]</h2>
@@ -9,13 +9,13 @@
     @if (Model.ShowConfirmation)
     {
         <p>
-            Thank you for confirming your email. You will now be redirected to set up Two-Factor Authentication.
+            Thank you for confirming the user.
         </p>
     }
     else
     {
         <p>
-            An error occurred while confirming your email. Please try again.
+            An error occurred while confirming the user creation. Please try again
         </p>
     }
 </div>/h1>

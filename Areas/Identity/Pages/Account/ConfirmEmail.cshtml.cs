@@ -26,11 +26,11 @@ namespace INTEX2_group1_3.Areas.Identity.Pages.Account
 
         public bool ShowConfirmation { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(string userId, string code)
+        public async Task<IActionResult> OnGetAsync(string userId, string code, string returnUrl = null)
         {
             if (userId == null || code == null)
             {
-                return RedirectToPage("/Index");
+                return RedirectToPage("/UserManagement");
             }
 
             var user = await _userManager.FindByIdAsync(userId);
@@ -45,7 +45,8 @@ namespace INTEX2_group1_3.Areas.Identity.Pages.Account
             if (result.Succeeded)
             {
                 ShowConfirmation = true;
-                return RedirectToPage("/Account/Manage/EnableAuthenticator", new { area = "Identity" });
+                // Redirect to UserManagement page
+                return RedirectToPage("/UserManagement");
             }
             else
             {

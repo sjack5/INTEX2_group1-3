@@ -93,12 +93,13 @@ namespace INTEX2_group1_3.Areas.Identity.Pages.Account
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+                        // Replace the existing RedirectToPage call with the updated one
+                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = "/UserManagement" });
                     }
                     else
                     {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
-                        return RedirectToPage("./Manage/EnableAuthenticator");
+                        // Redirect to UserManagement page instead of signing in the new user
+                        return Redirect("/UserManagement");
                     }
                 }
                 foreach (var error in result.Errors)
