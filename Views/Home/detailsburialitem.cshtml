@@ -1,0 +1,17 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model BurialMainTextileViewModel
+
+<h2>Burial Main:</h2>
+<p>@Model.BurialMain.Id</p>
+
+<h2>Textiles:</h2>
+<ul>
+    @foreach (var textile in Model.Textiles)
+    {
+        <li>@textile</li>
+    }
+</ul>

@@ -196,5 +196,22 @@ namespace INTEX2_group1_3.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult detailsburialitem(long id)
+        {
+            var burialMain = context.Burialmain.SingleOrDefault(x => x.Id == id);
+            var burialMainTextiles = context.BurialmainTextile.Where(bt => bt.MainBurialmainid == id).ToList();
+            var textileIds = burialMainTextiles.Select(bt => bt.MainTextileid);
+            var textiles = context.Textile.Where(t => textileIds.Contains(t.Id)).ToList();
+            var bodyanalysis = context.Bodyanalysischart.SingleOrDefault(x => x.Id == id);
+
+            var viewModel = new BurialMainTextileViewModel
+            {
+                BurialMain = burialMain,
+                Textiles = textiles
+            };
+
+            return View(viewModel);
+        }
     }
 }

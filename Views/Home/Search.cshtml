@@ -39,81 +39,88 @@
                                 </select>
                             </div>
                             <div class="col-md-3">
-            <label for="burialDepth">Burial Depth:</label>
-            <select class="form-control" id="burialDepth" name="burialDepth">
-                <option value="">Select a depth</option>
-                @foreach (string depth in Model.Burials.Select(b => b.Depth).Distinct())
-                {
-                    <option value="@depth">@depth</option>
-                }
-            </select>
-        </div>
-        @*<div class="col-md-3">
-            <label for="estimateStature">Estimate Stature:</label>
-            <select class="form-control" id="estimateStature">
-                <option value="">Select a stature</option>
-                @foreach (string length in Model.Burials.Select(b => b.Length).Distinct())
-                {
-                    <option value="@length">@length</option>
-                }
-            </select>
-        </div>
-        <div class="col-md-3">
-            <label for="ageAtDeath">Age at Death:</label>
-            <select class="form-control" id="ageAtDeath">
-                <option value="">Select an age</option>
-                @foreach (string age in Model.Burials.Select(b => b.Ageatdeath).Distinct())
-                {
-                    <option value="@age">@age</option>
-                }
-            </select>
-        </div>
-        <div class="col-md-3">
-            <label for="headDirection">Head Direction:</label>
-            <select class="form-control" id="headDirection">
-                <option value="">Select a direction</option>
-                @foreach (string headdirection in Model.Burials.Select(b => b.Headdirection).Distinct())
-                {
-                    <option value="@headdirection">@headdirection</option>
-                }
-            </select>
-        </div>
-        <div class="col-md-3">
-            <label for="burialId">Burial ID:</label>
-            <input type="text" class="form-control" id="burialId" placeholder="Search for a burial ID">
-            <datalist id="burialIdList">
-                @foreach (long burialid in Model.Burials.Where(b => b.Burialid != null).Select(b => b.Burialid).Distinct())
-                {
-                    <option value="@burialid">@burialid</option>
-                }
-            </datalist>
-        </div>
-        <div class="col-md-3">
-            <label for="hairColor">Hair Color:</label>
-            <select class="form-control" id="hairColor">
-                <option value="">Select a color</option>
-                @foreach (string haircolor in Model.Burials.Select(b => b.Haircolor).Distinct())
-                {
-                    <option value="@haircolor">@haircolor</option>
-                }
-            </select>
-        </div>
-        <div class="col-md-3">
-            <label for="presenceFaceBundle">Presence of Face Bundle:</label>
-            <select class="form-control" id="presenceFaceBundle">
-                <option value="">Select an option</option>
-                @foreach (string facebundles in Model.Burials.Select(b => b.Facebundles).Distinct())
-                {
-                    <option value="@facebundles">@facebundles</option>
-                }
-            </select>
-        </div>*@
+                                <label for="burialDepth">Burial Depth:</label>
+                                <select class="form-control" id="burialDepth" name="burialDepth">
+                                    <option value="">Select a depth</option>
+                                    @foreach (string depth in Model.Burials.Select(b => b.Depth).Distinct())
+                                    {
+                                        <option value="@depth">@depth</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="estimateStature">Estimate Stature:</label>
+                                <select class="form-control" id="estimateStature" name="estimateStature">
+                                    <option value="">Select a stature</option>
+                                    @foreach (string length in Model.Burials.Select(b => b.Length).Distinct())
+                                    {
+                                        <option value="@length">@length</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="ageAtDeath">Age at Death:</label>
+                                <select class="form-control" id="ageAtDeath" name="ageAtDeath">
+                                    <option value="">Select an age</option>
+                                    @foreach (string age in Model.Burials.Select(b => b.Ageatdeath).Distinct())
+                                    {
+                                        <option value="@age">@age</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="headDirection">Head Direction:</label>
+                                <select class="form-control" id="headDirection" name="headDirectio">
+                                    <option value="">Select a direction</option>
+                                    @foreach (string headdirection in Model.Burials.Select(b => b.Headdirection).Distinct())
+                                    {
+                                        <option value="@headdirection">@headdirection</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="burialId">Burial ID:</label>
+                                <input type="text" class="form-control" id="burialId" placeholder="Search for a burial ID" name="burialId">
+                                <datalist id="burialIdList">
+                                    @foreach (long burialid in Model.Burials.Where(b => b.Burialid != null).Select(b => b.Burialid).Distinct())
+                                    {
+                                        <option value="@burialid">@burialid</option>
+                                    }
+                                </datalist>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="hairColor">Hair Color:</label>
+                                <select class="form-control" id="hairColor" name="hairColor">
+                                    <option value="">Select a color</option>
+                                    @foreach (string haircolor in Model.Burials.Select(b => b.Haircolor).Distinct())
+                                    {
+                                        <option value="@haircolor">@haircolor</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="presenceFaceBundle">Presence of Face Bundle:</label>
+                                <select class="form-control" id="presenceFaceBundle" name="presenceFaceBundle">
+                                    <option value="">Select an option</option>
+                                    @foreach (string facebundles in Model.Burials.Select(b => b.Facebundles).Distinct())
+                                    {
+                                        <option value="@facebundles">@facebundles</option>
+                                    }
+                                </select>
+                            </div>
                             <!-- Add more dropdown filters in the same manner -->
                             <input type="hidden" name="sex" value=""/>
                             <input type="hidden" name="burialDepth" value="" />
+                            <input type="hidden" name="estimateStature" value="" /> <!--this might give and error for using an id instead of a name-->
+                            <input type="hidden" name="ageAtDeath" value=""/>
+                            <input type="hidden" name="headDirection" value="" />
+                            <input type="hidden" name="burialId" value="" />
+                            <input type="hidden" name="hairColor" value="" />
+                            <input type="hidden" name="presenceFaceBundle" value="" />
                             <button class="btn btn-primary btn-sm mt-3" type="submit" asp-controller="Home" asp-action="Filter">Submit</button>
                         </div>
                     </div>
+                </div>
             </form>
         </div>
     </div>
@@ -140,7 +147,7 @@
                             <td>@b.Squarenorthsouth</td>
                             <td>@b.Headdirection</td>
                             <td>@b.Sex</td>
-                            <td><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="Details" asp-route-id="@b.Id">Details</a></td>
+                            <td><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="detailsburialitem" asp-route-id="@b.Id">Details</a></td>
                             <td><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="Edit" asp-route-id="@b.Id">Edit</a></td>
                             <td><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="Delete" asp-route-id="@b.Id">Delete</a></td>
                             <!-- Add other columns for the fields in the BurialMain model -->
