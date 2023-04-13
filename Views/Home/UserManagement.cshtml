@@ -49,7 +49,7 @@
                             <td>
                                 @if (User.Identity.IsAuthenticated)
                                 {
-                                    <a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="Delete" asp-route-id="@b.Id">Delete</a>
+                                    <a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="DeleteUser" asp-route-id="@b.Id">Delete</a>
                                 }
                             </td>
                             <!-- Add other columns for the fields in the BurialMain model -->
@@ -59,14 +59,8 @@
             </table>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <a class="btn btn-primary mb-3" asp-area="" asp-controller="Home" asp-action="Add">Add a Burial</a>
-            <br /><br />
-            <a></a>
-        </div>
-    </div>
-</div>
+    
+
 @*<div>
         <a asp-action="Records" asp-route-page="@(Model.PageInfo.PageIndex - 1)" class="@(Model.PageInfo.HasPreviousPage ? "enabled" : "disabled")">Previous</a>
         <span>@Model.PageInfo.PageIndex of @Model.PageInfo.TotalPages</span>

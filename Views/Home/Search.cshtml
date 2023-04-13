@@ -186,10 +186,13 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <a class="btn btn-primary mb-3" asp-area="" asp-controller="Home" asp-action="Add">Add a Burial</a>
-            <br /><br />
-            <a></a>
-        </div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a class="btn btn-primary mb-3" asp-area="" asp-controller="Home" asp-action="Add">Add a Burial</a>
+            }
+                <br /><br />
+                <a></a>
+            </div>
     </div>
 </div>
 @*<div>

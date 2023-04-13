@@ -200,6 +200,22 @@ namespace INTEX2_group1_3.Controllers
 
             return RedirectToAction("Search");
         }
+
+        [HttpGet]
+        public IActionResult DeleteUser(string id)
+        {
+            var deletion = context.AspNetUsers.Single(x => x.Id == id);
+            return View(deletion);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteUser(AspNetUsers nm)
+        {
+            context.AspNetUsers.Remove(nm);
+            context.SaveChanges();
+
+            return RedirectToAction("UserManagement");
+        }
         public IActionResult Details(int id)
         {
             return View();
