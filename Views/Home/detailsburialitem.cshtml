@@ -5,13 +5,77 @@
 }
 @model BurialMainTextileViewModel
 
-<h2>Burial Main:</h2>
-<p>@Model.BurialMain.Id</p>
+<div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <h2>Burial Information:</h2>
+    <p>@Model.BurialMain.Id</p>
+    <div>
+        <table class="table">
+            <thead>
+                @Model.BurialMain.Id
+                <tr>
+                    <th>@Model.BurialMain.Squarenorthsouth</th>
+                    <th>@Model.BurialMain.Headdirection</th>
+                    <th>@Model.BurialMain.Sex</th>
+                    <th>@Model.BurialMain.Northsouth</th>
+                    <th>@Model.BurialMain.Depth</th>
+                    <th>@Model.BurialMain.Eastwest</th>
+                    <th>@Model.BurialMain.Adultsubadult</th>
+                    <th>@Model.BurialMain.Facebundles</th>
+                    <th>@Model.BurialMain.Southtohead</th>
+                    <th>@Model.BurialMain.Preservation</th>
+                    <th>@Model.BurialMain.Fieldbookpage</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
 
-<h2>Textiles:</h2>
-<ul>
+    <h2>Textile Information:</h2>
     @foreach (var textile in Model.Textiles)
     {
-        <li>@textile</li>
+        <div>
+            <table class="table">
+                <thead>
+                    @textile.Id
+                                <tr>
+                                    <th>Locale</th>
+                                    <th>Textile Id</th>
+                                    <th>Description</th>
+                                    <th>Burial Number</th>
+                                    <th>Estimated Period</th>
+                                    <th>Sample Date</th>
+                                    <th>Photographed Date</th>
+                                    <th>Direction</th>
+                                </tr>
+                            </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td>@textile.Locale</td>
+                        <td>@textile.Textileid</td>
+                        <td>@textile.Description</td>
+                        <td>@textile.Burialnumber</td>
+                        <td>@textile.Estimatedperiod</td>
+                        <td>@textile.Sampledate</td>
+                        <td>@textile.Photographeddate</td>
+                        <td>@textile.Direction</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        
+
     }
-</ul>
+</div>
