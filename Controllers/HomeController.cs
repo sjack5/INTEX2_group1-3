@@ -59,14 +59,65 @@ namespace INTEX2_group1_3.Controllers
             return View(x);
         }
 
-        public IActionResult Filter(string sex, string burialDepth)
+        //public IActionResult Filter(string sex, string burialDepth)
+        //{
+
+        //    var x = new SearchViewModel
+        //    {
+        //        Burials = context.Burialmain
+        //        .Where(b => b.Sex == sex & b.Depth == burialDepth)
+        //        .ToList()
+        //    };
+
+        //    return View(x);
+        //}
+        public IActionResult Filter(string sex, string burialDepth, string estimateStature, string ageAtDeath, string headDirection, string burialId, string hairColor, string presenceFaceBundle)
         {
+            var burialsQuery = context.Burialmain.AsQueryable();
+
+            if (!string.IsNullOrEmpty(sex))
+            {
+                burialsQuery = burialsQuery.Where(b => b.Sex == sex);
+            }
+
+            if (!string.IsNullOrEmpty(burialDepth))
+            {
+                burialsQuery = burialsQuery.Where(b => b.Depth == burialDepth);
+            }
+
+            if (!string.IsNullOrEmpty(estimateStature))
+            {
+                burialsQuery = burialsQuery.Where(b => b.Length == estimateStature);
+            }
+
+            if (!string.IsNullOrEmpty(ageAtDeath))
+            {
+                burialsQuery = burialsQuery.Where(b => b.Ageatdeath == ageAtDeath);
+            }
+
+            if (!string.IsNullOrEmpty(headDirection))
+            {
+                burialsQuery = burialsQuery.Where(b => b.Headdirection == headDirection);
+            }
+
+            if (!string.IsNullOrEmpty(burialId))
+            {
+                burialsQuery = burialsQuery.Where(b => b.Burialid.ToString() == burialId);
+            }
+
+            if (!string.IsNullOrEmpty(hairColor))
+            {
+                burialsQuery = burialsQuery.Where(b => b.Haircolor == hairColor);
+            }
+
+            if (!string.IsNullOrEmpty(presenceFaceBundle))
+            {
+                burialsQuery = burialsQuery.Where(b => b.Facebundles == presenceFaceBundle);
+            }
 
             var x = new SearchViewModel
             {
-                Burials = context.Burialmain
-                .Where(b => b.Sex == sex & b.Depth == burialDepth)
-                .ToList()
+                Burials = burialsQuery.ToList()
             };
 
             return View(x);
