@@ -62,72 +62,90 @@
                         </li>
                     }
                     </ul>
-                <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav><!-- .navbar -->
-    </header><!-- End Header -->
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+                    <i class="bi bi-list mobile-nav-toggle"></i>
+                </nav><!-- .navbar -->
+        </header><!-- End Header -->
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
 
-    <footer id="footer">
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
+        <footer id="footer">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
 
-                    <div class="col-lg-4 col-md-6">
-                        <div class="footer-info">
-                            <h3>Brigham Young University</h3>
-                            <p class="pb-3"><em>Archaeology Department</em></p>
-                            <p>
-                                800 KMBL<br>
-                                Provo, UT 84602<br><br>
-                                <strong>Phone:</strong> (801) 422-3058<br>
-                                <strong>Email:</strong> anthropology@byu.edu<br>
-                            </p>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="footer-info">
+                                <h3>Brigham Young University</h3>
+                                <p class="pb-3"><em>Archaeology Department</em></p>
+                                <p>
+                                    800 KMBL<br>
+                                    Provo, UT 84602<br><br>
+                                    <strong>Phone:</strong> (801) 422-3058<br>
+                                    <strong>Email:</strong> anthropology@byu.edu<br>
+                                </p>
+                            </div>
                         </div>
+
+                        <div class="col-lg-2 col-md-6 footer-links">
+                            <h4>Useful Links</h4>
+                            <ul>
+                                <li><a class="bx bx-chevron-right" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                                <li><a class="bx bx-chevron-right" asp-area="" asp-controller="Home" asp-action="SupervisedPage">Supervised</a></li>
+                                <li><a class="bx bx-chevron-right" asp-area="" asp-controller="Home" asp-action="UnsupervisedPage">Unsupervised</a></li>
+                            </ul>
+                        </div>
+
+                        @*<div class="col-lg-4 col-md-6 footer-newsletter">
+                                <h4>Our Newsletter</h4>
+                                <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+                                <form action="" method="post">
+                                    <input type="email" name="email"><input type="submit" value="Subscribe">
+                                </form>
+
+                            </div>*@
+
                     </div>
-
-                    <div class="col-lg-2 col-md-6 footer-links">
-                        <h4>Useful Links</h4>
-                        <ul>
-                            <li><a class="bx bx-chevron-right" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                            <li><a class="bx bx-chevron-right" asp-area="" asp-controller="Home" asp-action="SupervisedPage">Supervised</a></li>
-                            <li><a class="bx bx-chevron-right" asp-area="" asp-controller="Home" asp-action="UnsupervisedPage">Unsupervised</a></li>
-                        </ul>
-                    </div>
-
-                    @*<div class="col-lg-4 col-md-6 footer-newsletter">
-                            <h4>Our Newsletter</h4>
-                            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-                            <form action="" method="post">
-                                <input type="email" name="email"><input type="submit" value="Subscribe">
-                            </form>
-
-                        </div>*@
-
                 </div>
             </div>
-        </div>
 
-        <div class="container">
-            <div class="copyright">
-                <strong><span>The Mummy Project</span></strong>
+            <div class="container">
+                <div class="copyright">
+                    <strong><span>The Mummy Project</span></strong>
+                </div>
+                <div class="credits">
+                    <a class="bx bx-chevron-right" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    <!-- All the links in the footer should remain intact. -->
+                    <!-- You can delete the links only if you purchased the pro version. -->
+                    <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/squadfree-free-bootstrap-template-creative/ -->
+                </div>
             </div>
-            <div class="credits">
-                <a class="bx bx-chevron-right" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/squadfree-free-bootstrap-template-creative/ -->
-            </div>
-        </div>
-    </footer><!-- End Footer -->
+        </footer><!-- End Footer -->
 
-    <script src="~/Squadfree/Squadfree/assets/dist/jquery.min.js"></script>
-    <script src="~/Squadfree/Squadfree/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="~/Squadfree/Squadfree/assets/js/main.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
-</body>
+        <script src="~/Squadfree/Squadfree/assets/dist/jquery.min.js"></script>
+        <script src="~/Squadfree/Squadfree/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="~/Squadfree/Squadfree/assets/js/main.js" asp-append-version="true"></script>
+        @RenderSection("Scripts", required: false)
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const bodyId = document.body.id;
+                const header = document.getElementById('header');
+
+                if (bodyId === 'home-page') {
+                    window.addEventListener('scroll', function () {
+                        if (window.scrollY > 0) {
+                            header.classList.remove('header-transparent');
+                        } else {
+                            header.classList.add('header-transparent');
+                        }
+                    });
+                } else {
+                    header.classList.remove('header-transparent');
+                }
+            });
+        </script>
+    </body>
 </html>
