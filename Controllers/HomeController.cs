@@ -8,6 +8,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using LinqKit;
+using System.Linq.Expressions;
 namespace INTEX2_group1_3.Controllers
 {
     [RequireHttps]
@@ -45,19 +48,212 @@ namespace INTEX2_group1_3.Controllers
             return View();
         }
         [RequireHttps]
-        public IActionResult Search(string burialDirection, int pageNum = 1)
+        //[HttpGet]
+        //[RequireHttps]
+        //public IActionResult Search(string burialDirection, int pageNum = 1)
+        //{
+        //    int pageSize = 20;
+        //    var x = new SearchViewModel 
+        //    {
+        //        Burials = context.Burialmain
+        //        .Where(p => p.Squarenorthsouth == burialDirection | burialDirection == null)
+        //        .OrderBy(p=>p.Id)
+        //        .Skip((pageNum - 1) * pageSize)
+        //        .ToList()
+        //    };
+        //    return View(x);
+        //}
+
+        [HttpGet]
+        public IActionResult Search(int pageNum = 1)
         {
-            int pageSize = 20;
-            var x = new SearchViewModel 
+            int pageSize = 50;
+
+            var burialDirection = context.Burialmain.Select(x => x.Squareeastwest).Distinct().Where(x => !string.IsNullOrEmpty(x)).ToList();
+            var burialnumber = context.Burialmain.Select(x => x.Burialnumber).Distinct().Where(x => !string.IsNullOrEmpty(x)).ToList();
+            var depth = context.Burialmain.Select(x => x.Depth).Distinct().ToList();
+            var headdirection = context.Burialmain.Select(x => x.Headdirection).Distinct().ToList();
+            var ageatdeath = context.Burialmain.Select(x => x.Ageatdeath).Distinct().ToList();
+            var length = context.Burialmain.Select(x => x.Length).Distinct().ToList();
+            var sex = context.Burialmain.Select(x => x.Sex).Distinct().ToList();
+            var haircolor = context.Burialmain.Select(x => x.Haircolor).Distinct().ToList();
+
+
+            var x = new BurialViewModel
             {
+
+                FilterForm = new FilterForm
+                {
+                    Burials = context.Burialmain.ToList(),
+                    BurialDirections = burialDirection, //= MummyContext.Burialmain.Select(x => x.Area).Distinct()
+                    Burialnumbers = burialnumber,
+                    Depths = depth,
+                    Headdirections = headdirection,
+                    Ageatdeaths = ageatdeath,
+                    Lengths = length,
+                    Sexs = sex,
+                    Haircolors = haircolor,
+
+                },
+
                 Burials = context.Burialmain
-                .Where(p => p.Squarenorthsouth == burialDirection | burialDirection == null)
-                .OrderBy(p=>p.Id)
+                //.Include(x => x.BurialmainTextile)
+                .OrderBy(x => x.Id)
                 .Skip((pageNum - 1) * pageSize)
-                .ToList()
+                .Take(pageSize)
+                .ToList(),
+
+                PageInfo = new PageInfo
+                {
+                    // TotalNumBurials = context.Burialmain.Count(),
+                    BurialsPerPage = pageSize,
+                    CurrentPage = pageNum
+                }
             };
+
+            //var mummies = repo.burialmains
+            //    .OrderBy(x => x.Id)
+            //    .Skip((pageNum - 1) * pageSize)
+            //    .Take(pageSize);
+            //.Include(x => x.Burialmaterials)
+            //.ToList();
             return View(x);
         }
+
+        [HttpPost]
+        public IActionResult Search(IFormCollection form)
+        {
+            // install expressions
+            var burialsQuery = context.Burialmain.AsEnumerable().AsQueryable();
+            var filters = new List<Expression<Func<Burialmain, bool>>>();
+            Expression<Func<Burialmain, bool>> combinedFilters = null;
+
+            foreach (string key in form.Keys)
+            {
+                string value = form[key];
+                if (!string.IsNullOrEmpty(value) && value != "" && value != "Select an option")
+                {
+                    switch (key)
+                    {
+                        case "burialDirection":
+                            filters.Add(x => x.Squareeastwest == value);
+                            break;
+                        case "burialnumber":
+                            filters.Add(x => x.Burialnumber == value);
+                            break;
+                        case "depth":
+                            filters.Add(x => x.Depth == value);
+                            break;
+                        case "headdirection":
+                            filters.Add(x => x.Headdirection == value);
+                            break;
+                        case "age":
+                            filters.Add(x => x.Ageatdeath == value);
+                            break;
+                        case "length":
+                            filters.Add(x => x.Length == value);
+                            break;
+                        case "sex":
+                            filters.Add(x => x.Sex == value);
+                            break;
+                        case "haircolor":
+                            filters.Add(x => x.Haircolor == value);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            if (filters.Count > 0)
+            {
+                // need to install LinqKit and att package at the top
+                combinedFilters = filters.Aggregate((expr1, expr2) => expr1.And(expr2));
+            }
+            if (combinedFilters != null)
+            {
+                burialsQuery = burialsQuery.Where(combinedFilters);
+            }
+            var burialDirection = context.Burialmain.Select(x => x.Squareeastwest).Distinct().Where(x => !string.IsNullOrEmpty(x)).ToList();
+            var burialnumber = context.Burialmain.Select(x => x.Burialnumber).Distinct().Where(x => !string.IsNullOrEmpty(x)).ToList();
+            var depth = context.Burialmain.Select(x => x.Depth).Distinct().ToList();
+            var headdirection = context.Burialmain.Select(x => x.Headdirection).Distinct().ToList();
+            var ageatdeath = context.Burialmain.Select(x => x.Ageatdeath).Distinct().ToList();
+            var length = context.Burialmain.Select(x => x.Length).Distinct().ToList();
+            var sex = context.Burialmain.Select(x => x.Sex).Distinct().ToList();
+            var haircolor = context.Burialmain.Select(x => x.Haircolor).Distinct().ToList();
+
+
+            var x = new BurialViewModel
+            {
+                FilterForm = new FilterForm
+                {
+                    Burials = context.Burialmain.ToList(),
+                    BurialDirections = burialDirection, //= MummyContext.Burialmain.Select(x => x.Area).Distinct()
+                    Burialnumbers = burialnumber,
+                    Depths = depth,
+                    Headdirections = headdirection,
+                    Ageatdeaths = ageatdeath,
+                    Lengths = length,
+                    Sexs = sex,
+                    Haircolors = haircolor,
+
+                },
+                Burials = burialsQuery.ToList()
+            };
+
+            return View(x);
+        }
+        //public IActionResult Filter(string sex, string burialDepth, string estimateStature, string ageAtDeath, string headDirection, string burialId, string hairColor, string presenceFaceBundle)
+        //{
+        //    var burialsQuery = context.Burialmain.AsQueryable();
+
+        //    if (!string.IsNullOrEmpty(sex))
+        //    {
+        //        burialsQuery = burialsQuery.Where(b => b.Sex == sex);
+        //    }
+
+        //    if (!string.IsNullOrEmpty(burialDepth))
+        //    {
+        //        burialsQuery = burialsQuery.Where(b => b.Depth == burialDepth);
+        //    }
+
+        //    if (!string.IsNullOrEmpty(estimateStature))
+        //    {
+        //        burialsQuery = burialsQuery.Where(b => b.Length == estimateStature);
+        //    }
+
+        //    if (!string.IsNullOrEmpty(ageAtDeath))
+        //    {
+        //        burialsQuery = burialsQuery.Where(b => b.Ageatdeath == ageAtDeath);
+        //    }
+
+        //    if (!string.IsNullOrEmpty(headDirection))
+        //    {
+        //        burialsQuery = burialsQuery.Where(b => b.Headdirection == headDirection);
+        //    }
+
+        //    if (!string.IsNullOrEmpty(burialId))
+        //    {
+        //        burialsQuery = burialsQuery.Where(b => b.Burialid.ToString() == burialId);
+        //    }
+
+        //    if (!string.IsNullOrEmpty(hairColor))
+        //    {
+        //        burialsQuery = burialsQuery.Where(b => b.Haircolor == hairColor);
+        //    }
+
+        //    if (!string.IsNullOrEmpty(presenceFaceBundle))
+        //    {
+        //        burialsQuery = burialsQuery.Where(b => b.Facebundles == presenceFaceBundle);
+        //    }
+
+        //    var x = new SearchViewModel
+        //    {
+        //        Burials = burialsQuery.ToList()
+        //    };
+
+        //    return View(x);
+        //}
 
         public IActionResult UserManagement()
         {
