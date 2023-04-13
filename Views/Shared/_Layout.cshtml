@@ -53,15 +53,17 @@
                     <li><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="Search">Records</a></li>
                     <li><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="SupervisedPage">Supervised</a></li>
                     <li><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="UnsupervisedPage">Unsupervised</a></li>
-                    <li>
-                        <partial name="_LoginPartial" />
-                        @if (User.Identity.IsAuthenticated)
-                        {
-<li>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>
                             <a asp-controller="Home" asp-action="UserManagement" class="nav-link">Admin Portal</a>
                         </li>
                     }
-                    </ul>
+                    <li>
+                        <partial name="_LoginPartial" />
+                    </li>
+                </ul>
                     <i class="bi bi-list mobile-nav-toggle"></i>
                 </nav><!-- .navbar -->
         </header><!-- End Header -->
