@@ -8,40 +8,32 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-
 namespace INTEX2_group1_3.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class ConfirmEmailModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
-
         public ConfirmEmailModel(UserManager<IdentityUser> userManager)
         {
             _userManager = userManager;
         }
-
         [TempData]
         public string StatusMessage { get; set; }
-
         public bool ShowConfirmation { get; set; }
-
         public async Task<IActionResult> OnGetAsync(string userId, string code, string returnUrl = null)
         {
             if (userId == null || code == null)
             {
-                return RedirectToPage("/UserManagement");
+                return RedirectToPage("/UserManagment");
             }
-
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
             {
                 return NotFound($"Unable to load user with ID '{userId}'.");
             }
-
             code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
             var result = await _userManager.ConfirmEmailAsync(user, code);
-
             if (result.Succeeded)
             {
                 ShowConfirmation = true;
@@ -56,3 +48,9 @@ namespace INTEX2_group1_3.Areas.Identity.Pages.Account
         }
     }
 }
+
+
+
+
+
+
