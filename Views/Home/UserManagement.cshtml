@@ -1,0 +1,112 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model UserManagementModel
+@{
+    ViewBag.Title = "User List";
+}
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<!-- Vendor CSS Files -->
+<link href="~/Squadfree/Squadfree/assets/vendor/aos/aos.css" rel="stylesheet">
+<link href="~/Squadfree/Squadfree/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="~/Squadfree/Squadfree/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+<link href="~/Squadfree/Squadfree/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+<link href="~/Squadfree/Squadfree/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+<link href="~/Squadfree/Squadfree/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+<!-- Template Main CSS File -->
+<link href="assets/css/style.css" rel="stylesheet">
+<h2>Users</h2>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Two Factor Enabled</th>
+                        
+                        <!-- Add other columns for the fields in the BurialMain model -->
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (AspNetUsers b in Model.Persons)
+                    {
+                        <tr>
+                            <td>@b.Email</td>
+                            <td>@b.TwoFactorEnabled</td>
+                            
+                      
+                     
+                            <td>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="Delete" asp-route-id="@b.Id">Delete</a>
+                                }
+                            </td>
+                            <!-- Add other columns for the fields in the BurialMain model -->
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn-primary mb-3" asp-area="" asp-controller="Home" asp-action="Add">Add a Burial</a>
+            <br /><br />
+            <a></a>
+        </div>
+    </div>
+</div>
+@*<div>
+        <a asp-action="Records" asp-route-page="@(Model.PageInfo.PageIndex - 1)" class="@(Model.PageInfo.HasPreviousPage ? "enabled" : "disabled")">Previous</a>
+        <span>@Model.PageInfo.PageIndex of @Model.PageInfo.TotalPages</span>
+        <a asp-action="Records" asp-route-page="@(Model.PageInfo.PageIndex + 1)" class="@(Model.PageInfo.HasNextPage ? "enabled" : "disabled")">Next</a>
+    </div>*@
+<!-- Vendor JS Files -->
+<script src="~/Squadfree/Squadfree/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="~/Squadfree/Squadfree/assets/vendor/aos/aos.js"></script>
+<script src="~/Squadfree/Squadfree/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/Squadfree/Squadfree/assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="~/Squadfree/Squadfree/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="~/Squadfree/Squadfree/assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="~/Squadfree/Squadfree/assets/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const filterButton = document.querySelector('[data-bs-toggle="collapse"]');
+        filterButton.addEventListener('click', function () {
+            const targetId = this.getAttribute('data-bs-target');
+            const targetElement = document.querySelector(targetId);
+            targetElement.classList.toggle('collapse');
+            targetElement.classList.toggle('show');
+        });
+    });
+</script>
+<script>
+    var input = document.getElementById('burialId');
+    var list = document.getElementById('burialIdList');
+    input.addEventListener('input', function () {
+        var value = input.value;
+        var options = list.options;
+        for (var i = 0; i < options.length; i++) {
+            var option = options[i];
+            if (option.value.indexOf(value) === 0) {
+                option.selected = true;
+                return;
+            }
+        }
+    });
+</script>

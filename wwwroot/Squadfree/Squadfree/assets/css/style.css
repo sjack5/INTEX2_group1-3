@@ -70,6 +70,10 @@ h6 {
   opacity: 1;
 }
 
+.brown-header {
+    background: rgba(72, 60, 50, 0.9); /* Replace this with the brown color you want */
+}
+
 /*--------------------------------------------------------------
 # Disable aos animation delay on mobile devices
 --------------------------------------------------------------*/
@@ -83,11 +87,11 @@ h6 {
 # Header
 --------------------------------------------------------------*/
 #header {
-  transition: all 0.5s;
-  z-index: 997;
-  transition: all 0.5s;
-  padding: 24px 0;
-  background: rgba(103, 176, 209, 0.8);
+    transition: all 0.5s;
+    z-index: 997;
+    transition: all 0.5s;
+    padding: 24px 0;
+    background-color: rgb(72, 60, 50, 0.9);
 }
 
 #header.header-transparent {
@@ -95,7 +99,7 @@ h6 {
 }
 
     #header.header-scrolled {
-        background: rgba(72, 60, 50, 0.9);
+        background: rgb(72, 60, 50, 0.9);
         padding: 12px;
     }
 
@@ -172,27 +176,27 @@ h6 {
   margin-left: 5px;
 }
 
-.navbar a:hover,
-.navbar .active,
-.navbar .active:focus,
-.navbar li:hover>a {
-  background: rgba(255, 255, 255, 0.2);
-}
+    .navbar a:hover,
+    .navbar .active,
+    .navbar .active:focus,
+    .navbar li:hover > a {
+        background: rgba(72, 60, 50, 0.9));
+    }
 
-.navbar .dropdown ul {
-  display: block;
-  position: absolute;
-  left: 10px;
-  top: calc(100% + 30px);
-  margin: 0;
-  padding: 10px 0;
-  z-index: 99;
-  opacity: 0;
-  visibility: hidden;
-  background: #fff;
-  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
-  transition: 0.3s;
-}
+    .navbar .dropdown ul {
+        display: block;
+        position: absolute;
+        left: 10px;
+        top: calc(100% + 30px);
+        margin: 0;
+        padding: 10px 0;
+        z-index: 99;
+        opacity: 0;
+        visibility: hidden;
+        background: #fff;
+        box-shadow: 0px 0px 30px rgba(72, 60, 50, 0.9);
+        transition: 0.3s;
+    }
 
 .navbar .dropdown ul li {
   min-width: 200px;

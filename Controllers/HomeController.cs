@@ -59,6 +59,18 @@ namespace INTEX2_group1_3.Controllers
             return View(x);
         }
 
+        public IActionResult UserManagement()
+        {
+            
+            var x = new UserManagementModel
+            {
+                Persons = context.AspNetUsers
+                .OrderBy(p => p.Email)
+                .ToList()
+            };
+            return View(x);
+        }
+
         //public IActionResult Filter(string sex, string burialDepth)
         //{
 
@@ -143,6 +155,22 @@ namespace INTEX2_group1_3.Controllers
                 return View();
             }
         }
+
+        [HttpPost]
+        public IActionResult AddUser(AspNetUsers ar)
+        {
+            if (ModelState.IsValid)
+            {
+                context.Add(ar);
+                context.SaveChanges();
+                return View("Confirmation", ar);
+            }
+            else
+            {
+                return View();
+            }
+        }
+
         [HttpGet]
         public IActionResult Edit(long id)
         {

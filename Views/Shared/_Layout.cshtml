@@ -38,7 +38,7 @@
 </head>
 <body>
     <!-- ======= Header ======= -->
-    <header id="header" class="fixed-top header-transparent">
+    <header id="header" class="fixed-top header-transparent brown-header">
         <div class="container d-flex align-items-center justify-content-between position-relative">
 
             <div class="logo">
@@ -55,10 +55,10 @@
                     <li><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="UnsupervisedPage">Unsupervised</a></li>
                     <li>
                         <partial name="_LoginPartial" />
-                        @if (User.IsInRole("Admin"))
+                        @if (User.Identity.IsAuthenticated)
                         {
-                        <li>
-                            <a asp-controller="Admin" asp-action="Index" class="nav-link">Admin Portal</a>
+<li>
+                            <a asp-controller="Home" asp-action="UserManagement" class="nav-link">Admin Portal</a>
                         </li>
                     }
                     </ul>
