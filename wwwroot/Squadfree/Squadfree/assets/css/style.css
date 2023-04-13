@@ -16,7 +16,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #67b0d1;
+  color: rgba(72, 60, 50, 0.9);
 }
 
 a:hover {
@@ -41,17 +41,17 @@ h6 {
 # Back to top button
 --------------------------------------------------------------*/
 .back-to-top {
-  position: fixed;
-  visibility: hidden;
-  opacity: 0;
-  right: 15px;
-  bottom: 15px;
-  z-index: 998;
-  background: #67b0d1;
-  width: 40px;
-  height: 40px;
-  border-radius: 50px;
-  transition: all 0.4s;
+    position: fixed;
+    visibility: hidden;
+    opacity: 0;
+    right: 15px;
+    bottom: 15px;
+    z-index: 998;
+    background: rgb(72, 60, 50, 0.9);
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    transition: all 0.4s;
 }
 
 .back-to-top i {
@@ -61,7 +61,7 @@ h6 {
 }
 
     .back-to-top:hover {
-        background: #67b0d1;
+        background: rgb(72, 60, 50, 0.9);
         color: #fff;
     }
 
@@ -180,7 +180,7 @@ h6 {
     .navbar .active,
     .navbar .active:focus,
     .navbar li:hover > a {
-        background: rgba(72, 60, 50, 0.9));
+        background: rgba(72, 60, 50, 0.9);
     }
 
     .navbar .dropdown ul {
@@ -217,7 +217,7 @@ h6 {
 .navbar .dropdown ul a:hover,
 .navbar .dropdown ul .active:hover,
 .navbar .dropdown ul li:hover>a {
-  color: #67b0d1;
+  color: rgba(72, 60, 50, 0.9);
 }
 
 .navbar .dropdown:hover>ul {
@@ -265,7 +265,7 @@ h6 {
 .navbar .megamenu ul li a:hover,
 .navbar .megamenu ul li .active,
 .navbar .megamenu ul li .active:hover {
-  color: #67b0d1;
+  color: rgba(72, 60, 50, 0.9);
 }
 
 .navbar .megamenu:hover>ul {
@@ -359,7 +359,7 @@ h6 {
 .navbar-mobile a:hover,
 .navbar-mobile .active,
 .navbar-mobile li:hover>a {
-  color: #67b0d1;
+  color: rgba(72, 60, 50, 0.9);
 }
 
 .navbar-mobile .getstarted,
@@ -394,7 +394,7 @@ h6 {
 .navbar-mobile .dropdown ul a:hover,
 .navbar-mobile .dropdown ul .active:hover,
 .navbar-mobile .dropdown ul li:hover>a {
-  color: #67b0d1;
+  color: rgba(72, 60, 50, 0.9);
 }
 
 .navbar-mobile .dropdown>.dropdown-active {
@@ -410,7 +410,7 @@ h6 {
 .navbar-mobile .megamenu ul li a:hover,
 .navbar-mobile .megamenu ul li .active,
 .navbar-mobile .megamenu ul li .active:hover {
-  color: #67b0d1;
+  color: rgba(72, 60, 50, 0.9);
 }
 
 /*--------------------------------------------------------------
@@ -868,7 +868,7 @@ section {
 
 .portfolio #portfolio-flters li:hover,
 .portfolio #portfolio-flters li.filter-active {
-  color: #67b0d1;
+  color: rgba(72, 60, 50, 0.9);
 }
 
 .portfolio #portfolio-flters li:last-child {
@@ -958,11 +958,11 @@ section {
   height: 12px;
   background-color: #fff;
   opacity: 1;
-  border: 1px solid #67b0d1;
+  border: 1px solid rgba(72, 60, 50, 0.9);
 }
 
 .portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #67b0d1;
+  background-color: rgba(72, 60, 50, 0.9);
 }
 
 .portfolio-details .portfolio-info {
@@ -1096,7 +1096,7 @@ section {
 }
 
 .testimonials .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #67b0d1;
+  background-color: rgba(72, 60, 50, 0.9);
 }
 
 /*--------------------------------------------------------------
@@ -1273,7 +1273,7 @@ section {
 
 .contact .php-email-form input::focus,
 .contact .php-email-form textarea::focus {
-  background-color: #67b0d1;
+  background-color: rgba(72, 60, 50, 0.9);
 }
 
 .contact .php-email-form input {
@@ -1285,7 +1285,7 @@ section {
 }
 
 .contact .php-email-form button[type=submit] {
-  background: #67b0d1;
+  background: rgba(72, 60, 50, 0.9);
   border: 0;
   padding: 10px 24px;
   color: #fff;
@@ -1325,7 +1325,7 @@ section {
   margin-bottom: 15px;
   background: white;
   color: #b2a495;
-  border-top: 4px solid #67b0d1;
+  border-top: 4px solid rgba(72, 60, 50, 0.9);
   text-align: center;
   padding: 30px 20px;
 }
