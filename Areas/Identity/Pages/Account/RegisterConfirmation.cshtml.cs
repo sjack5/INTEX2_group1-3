@@ -25,7 +25,7 @@ namespace INTEX2_group1_3.Areas.Identity.Pages.Account
         {
             if (email == null)
             {
-                return RedirectToPage("/UserManagement");
+                return RedirectToAction("UserManagement", "Home");
             }
             var user = await _userManager.FindByEmailAsync(email);
             if (user == null)
@@ -43,7 +43,7 @@ namespace INTEX2_group1_3.Areas.Identity.Pages.Account
                 EmailConfirmationUrl = Url.Page(
                     "/Account/ConfirmEmail",
                     pageHandler: null,
-                    values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
+                    values: new { area = "Identity", userId = userId, code = code, returnUrl = "/Home/UserManagement" },
                     protocol: Request.Scheme);
             }
             return Page();

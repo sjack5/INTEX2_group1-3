@@ -1,7 +1,7 @@
 ﻿@page
 @model RegisterConfirmationModel
 @{
-    ViewData["Title"] = "User Creation";
+    ViewData["Title"] = "User Account Confirmation";
 }
 <br />
 <br />
@@ -11,13 +11,22 @@
 <br />
 <br />
 <br />
-<h1>@ViewData["Title"]</h1>
 @{
     if (@Model.DisplayConfirmAccountLink)
     {
-        <p>
-            <a id="confirm-link" href="@Model.EmailConfirmationUrl">Click Here to Confirm User Creation</a>
-        </p>
+    <div class="card text-center">
+        <div class="card-header">
+            User
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">@ViewData["Title"]</h5>
+            <p class="card-text">Creation of this account will authorize the user for full administrative privileges of the database including the ability to add and delete records. Do you authorize this elevated status? .</p>
+            <a class="btn btn-primary" id="confirm-link" href="@Url.Action("UserManagement", "Home", new { area = "" })">Click Here to Authorize</a>
+        </div>
+        <div class="card-footer text-muted">
+            Welcome to Egypt
+        </div>
+    </div>
     }
     else
     {
@@ -30,3 +39,4 @@
 <br />
 <br />
 <br />
+

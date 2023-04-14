@@ -67,7 +67,7 @@ namespace INTEX2_group1_3.Controllers
         [HttpGet]
         public IActionResult Search(int pageNum = 1)
         {
-            int pageSize = 500000;
+            int pageSize = 60;
 
             var burialDirection = context.Burialmain.Select(x => x.Squareeastwest).Distinct().Where(x => !string.IsNullOrEmpty(x)).ToList();
             var burialnumber = context.Burialmain.Select(x => x.Burialnumber).Distinct().Where(x => !string.IsNullOrEmpty(x)).ToList();

@@ -25,11 +25,12 @@
 <!-- Template Main CSS File -->
 <link href="assets/css/style.css" rel="stylesheet">
 <h2>Users</h2>
+<br />
 
 
-<a class="btn brown-btn" asp-area="Identity" asp-page="/Account/Register">Add User</a>
-
-
+<a class="btn btn-outline-primary" asp-area="Identity" asp-page="/Account/Register">Add User</a>
+<br />
+<br />
     <div class="row">
         <div class="col-md-12">
             <table class="table">
@@ -53,7 +54,7 @@
                             <td>
                                 @if (User.Identity.IsAuthenticated)
                                 {
-                                    <a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="DeleteUser" asp-route-id="@b.Id">Delete</a>
+                                    <a class="btn  btn-sm btn-danger" asp-area="" asp-controller="Home" asp-action="DeleteUser" asp-route-id="@b.Id">Delete</a>
                                 }
                             </td>
                             <!-- Add other columns for the fields in the BurialMain model -->
