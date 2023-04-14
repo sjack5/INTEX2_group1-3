@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace INTEX2_group1_3.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230412155749_RenamedIdentityTableNames")]
-    partial class RenamedIdentityTableNames
+    [Migration("20230414051414_AppUpdate")]
+    partial class AppUpdate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -42,9 +42,11 @@ namespace INTEX2_group1_3.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<bool>("LockoutEnabled")
