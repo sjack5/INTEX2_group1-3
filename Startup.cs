@@ -58,11 +58,7 @@ namespace INTEX2_group1_3
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            services.AddHttpsRedirection(options =>
-            {
-                options.RedirectStatusCode = StatusCodes.Status308PermanentRedirect;
-                options.HttpsPort = 443;
-            });
+            
 
 
 
@@ -79,11 +75,7 @@ namespace INTEX2_group1_3
                 options.ExcludedHosts.Add("www.example.com");
             });
 
-            services.AddHttpsRedirection(options =>
-            {
-                options.RedirectStatusCode = (int)HttpStatusCode.TemporaryRedirect;
-                options.HttpsPort = 5001;
-            });
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -101,13 +93,13 @@ namespace INTEX2_group1_3
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseCookiePolicy();
-            app.UseHttpsRedirection();
+            
 
             app.UseEndpoints(endpoints =>
             {
