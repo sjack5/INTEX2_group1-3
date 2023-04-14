@@ -42,108 +42,155 @@
 
 
     <!-- ======= Hero Section ======= -->
-    <section id="hero">
-        <div class="hero-container" data-aos="fade-up">
-            <h1>The Mummy Project</h1>
-            <h2>All things fag el-Gamous</h2>
-            <a href="#about" class="btn-get-started scrollto"><i class="bx bx-chevrons-down"></i></a>
+    @*<section id="hero">
+            <div class="hero-container" data-aos="fade-up">
+                <h1>The Mummy Project</h1>
+                <h2>All things fag el-Gamous</h2>
+                <a href="#about" class="btn-get-started scrollto"><i class="bx bx-chevrons-down"></i></a>
+            </div>
+        </section>*@
+    <!-- End Hero -->
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="text-center">
+        <h1 class="display-4">Supervised Analyis</h1>
+    </div>
+    <form>
+        <div class="row text-center" style="padding-top:50px">
+            <div class="col-7">
+                <h4>Fill out the form to predict how your mummy was most likely wrapped</h4>
+                <div class="form-group" style="color:white; margin-top:10px; margin-bottom:15px">
+                    <label for="HeadDirection" class="myLabelSuper">Head Direction:</label>
+                    <select id="HeadDirection" class="form-control myInput" name="HeadDirection">
+                        <option value="-">-</option>
+                        <option value="West">West</option>
+                        <option value="East">East</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="color:white; margin-top:10px; margin-bottom:15px">
+                    <label for="SampleCollected" class="myLabelSuper">Sample Collected:</label>
+                    <select id="SampleCollected" class="form-control myInput" name="SampleCollected">
+                        <option value="-">-</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="color:white; margin-top:10px; margin-bottom:15px">
+                    <label for="FaceBundles" class="myLabelSuper">Face Bundles:</label>
+                    <select id="FaceBundles" class="form-control myInput" name="FaceBundles">
+                        <option value="-">-</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="color:white; margin-top:10px; margin-bottom:15px">
+                    <label for="AdultSubAdult" class="myLabelSuper">Adult Sub Adult</label>
+                    <select id="AdultSubAdult" class="form-control myInput" name="AdultSubAdult">
+                        <option value="-">-</option>
+                        <option value="A">A</option>
+                        <option value="C">C</option>
+                    </select>
+                </div>
+                <button id="custom-button">Predict Wrapping!</button>
+            </div>
         </div>
-    </section><!-- End Hero -->
+    </form>
 
-    <main id="main">
-        <!-- ======= About Section ======= -->
-        <section id="about" class="about">
-            <div class="container">
+<h4 style="">Prediction:</h4>
+<h4 id="predictionResult"></h4>
 
-                <div class="row no-gutters">
-                    <div class="content col-xl-5 d-flex align-items-stretch" data-aos="fade-up">
-                        <div class="content">
-                            <h3>Search our excavation records</h3>
-                            <p>
-                                Here you can search through each mummy discovery based on a wide variety of specifications
-                            </p>
-                            <a href="#" class="about-btn">Search <i class="bx bx-chevron-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-xl-7 d-flex align-items-stretch">
-                        <div class="icon-boxes d-flex flex-column justify-content-center">
-                            <div class="row">
-                                <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
-                                    <i class="bx bx-receipt"></i>
-                                    <h4>Corporis voluptates sit</h4>
-                                    <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
-                                </div>
-                                <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
-                                    <i class="bx bx-cube-alt"></i>
-                                    <h4>Ullamco laboris nisi</h4>
-                                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
-                                </div>
-                                <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300">
-                                    <i class="bx bx-images"></i>
-                                    <h4>Labore consequatur</h4>
-                                    <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
-                                </div>
-                                <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="400">
-                                    <i class="bx bx-shield"></i>
-                                    <h4>Beatae veritatis</h4>
-                                    <p>Expedita veritatis consequuntur nihil tempore laudantium vitae denat pacta</p>
-                                </div>
-                            </div>
-                        </div><!-- End .content-->
-                    </div>
-                </div>
+<br />
+<br />
+<br />
 
-            </div>
-        </section><!-- End About Section -->
-        <!-- ======= Search Section ======= -->
-        <section id="search" class="search">
-            <div class="container">
-                <div class="section-title" data-aos="fade-up">
-                    <h2>Advanced Search</h2>
-                </div>
+<script>
+    const customButton = document.getElementById('custom-button');
+    customButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        const inputData = {
+            "headdirection_W": 0,
+            "headdirection_E": 0,
+            "samplecollected_Y": 0,
+            "samplecollected_N": 0,
+            "Facebundles_Y": 0,
+            "Facebundles_N": 0,
+            "adultsubadult_A": 0,
+            "adultsubadult_C": 0
+        }
+        function updateInputData() {
+            const sampleCollectedInput = document.querySelector('#sample')
+            const headDirectionInput = document.querySelector('#headDirection');
+            const faceBundlesInput = document.querySelector('#faceBundles')
+            const adultsubadultInput = document.querySelector('#adultSubAdult')
+            if (sampleCollectedInput === 'Yes') {
+                inputData.samplecollected_Y = 1;
+                inputData.samplecollected_N = 0;
+            }
+            else if (sampleCollectedInput === 'No') {
+                inputData.samplecollected_Y = 0;
+                inputData.samplecollected_N = 1;
+            }
+            if (headDirectionInput === 'West') {
+                inputData.headdirection_W = 1;
+                inputData.headdirection_E = 0;
+            }
+            else if (headDirectionInput === 'East') {
+                inputData.headdirection_W = 0;
+                inputData.headdirection_E = 1;
+            }
+            if (faceBundlesInput === 'Yes') {
+                inputData.Facebundles_Y = 1;
+                inputData.Facebundles_N = 0;
+            }
+            else if (faceBundlesInput === 'No') {
+                inputData.Facebundles_Y = 0;
+                inputData.Facebundles_N = 1;
+            }
+            if (adultsubadultInput === 'A') {
+                inputData.adultsubadult_A = 1;
+                inputData.adultsubadult_C = 0;
+                inputData.adultsubadult_E = 0;
+            }
+            else if (adultsubadultInput === 'C') {
+                inputData.adultsubadult_A = 0;
+                inputData.adultsubadult_C = 1;
+                inputData.adultsubadult_E = 0;
+            }
+            else if (adultsubadultInput === 'E') {
+                inputData.adultsubadult_A = 0;
+                inputData.adultsubadult_C = 0;
+                inputData.adultsubadult_E = 1;
+            }
+        }
 
-                <form method="post" class="search-form">
-                    <div class="row">
-                        <div class="col-md-6 mb-3" data-aos="fade-up">
-                            <label for="searchTerm">Search term</label>
-                            <input type="text" class="form-control" id="searchTerm" name="searchTerm" placeholder="Enter search term">
-                        </div>
-                        <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="100">
-                            <label for="filter1">Filter 1</label>
-                            <select class="form-select" id="filter1" name="filter1">
-                                <option value="">Choose...</option>
-                                <option value="option1">Option 1</option>
-                                <option value="option2">Option 2</option>
-                                <option value="option3">Option 3</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="200">
-                            <label for="filter2">Filter 2</label>
-                            <select class="form-select" id="filter2" name="filter2">
-                                <option value="">Choose...</option>
-                                <option value="option1">Option 1</option>
-                                <option value="option2">Option 2</option>
-                                <option value="option3">Option 3</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-delay="300">
-                            <label for="filter3">Filter 3</label>
-                            <select class="form-select" id="filter3" name="filter3">
-                                <option value="">Choose...</option>
-                                <option value="option1">Option 1</option>
-                                <option value="option2">Option 2</option>
-                                <option value="option3">Option 3</option>
-                            </select>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary mt-3" data-aos="fade-up" data-aos-delay="400">Search</button>
-                </form>
-            </div>
-        </section><!-- End Search Section -->
+        fetch('/predict', {
+            method: 'POST',
+            body: JSON.stringify(inputData),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(prediction => {
+                console.log(prediction);
+                // Update the h4 tag with the prediction result
+                document.querySelector('#predictionResult').textContent = String(prediction.predictedValue);
+                console.log("it got here at least");
+            })
+            .catch(error => {
+                alert("Something went wrong...");
+            });
+        })
+</script>
 
-    </main><!-- End #main -->
+
 
 </body>
 </html>

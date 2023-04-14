@@ -19,6 +19,7 @@ using PostgresCRUD.DataAccess;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using INTEX2_group1_3.Models;
+using Microsoft.ML.OnnxRuntime;
 
 namespace INTEX2_group1_3
 {
@@ -34,6 +35,11 @@ namespace INTEX2_group1_3
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers();
+            services.AddSingleton<InferenceSession>(
+                new InferenceSession("wwwroot/decision_tree_classifier.onnx")
+         );
+
             services.AddDbContext<PostgreSqlContext>(options =>
             options.UseNpgsql(Configuration.GetConnectionString("YourDbContextConnection")));
 
