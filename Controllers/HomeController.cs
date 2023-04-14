@@ -344,7 +344,9 @@ namespace INTEX2_group1_3.Controllers
             {
                 context.Add(ar);
                 context.SaveChanges();
-                return View("Confirmation", ar);
+                // Replace the line below with a RedirectToAction
+                //return View("Confirmation", ar);
+                return RedirectToAction("Search", "Home");
             }
             else
             {
