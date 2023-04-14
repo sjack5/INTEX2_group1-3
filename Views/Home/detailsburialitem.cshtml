@@ -13,123 +13,67 @@
     <br />
     <br />
     <h2>Burial Information: @Model.BurialMain.Id</h2>
-    <div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Square North South</th>
-                    <th>Head Direction</th>
-                    <th>Sex</th>
-                    <th>North South</th>
-                    <th>Depth</th>
-                    <th>East West</th>
-                    <th>Adult Sub Adult</th>
-                    <th>Facebundles</th>
-                    <th>South To Head</th>
-                    <th>Preservation</th>
-                    <th>Fieldbook Page</th>
-                    <th>Square East West</th>
-                    <th>Goods</th>
-                    <th>Text</th>
-                    <th>Wrapping</th>
-                    <th>Hair Color</th>
-                    <th>West To Head</th>
-                    <th>Samples Collected</th>
-                    <th>Area</th>
-                    <th>Burial Id</th>
-                    <th>Length</th>
-                    <th>Burial Number</th>
-                    <th>Data Expert Initials</th>
-                    <th>West To Feet</th>
-                    <th>Age At Death</th>
-                    <th>South To Feet</th>
-                    <th>Excavation Recorder</th>
-                    <th>Photos</th>
-                    <th>Hair</th>
-                    <th>Burial Materials</th>
-                    <th>Fieldbook Excavation Year</th>
-                    <th>Cluster Number</th>
-                    <th>Shaft Number</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>@Model.BurialMain.Squarenorthsouth</td>
-                    <td>@Model.BurialMain.Headdirection</td>
-                    <td>@Model.BurialMain.Sex</td>
-                    <td>@Model.BurialMain.Northsouth</td>
-                    <td>@Model.BurialMain.Depth</td>
-                    <td>@Model.BurialMain.Eastwest</td>
-                    <td>@Model.BurialMain.Adultsubadult</td>
-                    <td>@Model.BurialMain.Facebundles</td>
-                    <td>@Model.BurialMain.Southtohead</td>
-                    <td>@Model.BurialMain.Preservation</td>
-                    <td>@Model.BurialMain.Fieldbookpage</td>
-                    <td>@Model.BurialMain.Squareeastwest</td>
-                    <td>@Model.BurialMain.Goods</td>
-                    <td>@Model.BurialMain.Text</td>
-                    <td>@Model.BurialMain.Wrapping</td>
-                    <td>@Model.BurialMain.Haircolor</td>
-                    <td>@Model.BurialMain.Westtohead</td>
-                    <td>@Model.BurialMain.Samplescollected</td>
-                    <td>@Model.BurialMain.Area</td>
-                    <td>@Model.BurialMain.Burialid</td>
-                    <td>@Model.BurialMain.Length</td>
-                    <td>@Model.BurialMain.Burialnumber</td>
-                    <td>@Model.BurialMain.Dataexpertinitials</td>
-                    <td>@Model.BurialMain.Westtofeet</td>
-                    <td>@Model.BurialMain.Ageatdeath</td>
-                    <td>@Model.BurialMain.Southtofeet</td>
-                    <td>@Model.BurialMain.Excavationrecorder</td>
-                    <td>@Model.BurialMain.Photos</td>
-                    <td>@Model.BurialMain.Hair</td>
-                    <td>@Model.BurialMain.Burialmaterials</td>
-                    <td>@Model.BurialMain.Dateofexcavation</td>
-                    <td>@Model.BurialMain.Fieldbookexcavationyear</td>
-                    <td>@Model.BurialMain.Clusternumber</td>
-                    <td>@Model.BurialMain.Shaftnumber</td>
-                </tr>
-            </tbody>
-                
-            
-        </table>
-    </div>
-
-    <h2>Textile Information:</h2>
-    @foreach (var textile in Model.Textiles)
-    {
-        <div>
-            <table class="table">
-                <thead>
-                    @textile.Id
-                                <tr>
-                                    <th>Locale</th>
-                                    <th>Textile Id</th>
-                                    <th>Description</th>
-                                    <th>Burial Number</th>
-                                    <th>Estimated Period</th>
-                                    <th>Sample Date</th>
-                                    <th>Photographed Date</th>
-                                    <th>Direction</th>
-                                </tr>
-                            </thead>
-                <tbody>
-                    
-                    <tr>
-                        <td>@textile.Locale</td>
-                        <td>@textile.Textileid</td>
-                        <td>@textile.Description</td>
-                        <td>@textile.Burialnumber</td>
-                        <td>@textile.Estimatedperiod</td>
-                        <td>@textile.Sampledate</td>
-                        <td>@textile.Photographeddate</td>
-                        <td>@textile.Direction</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        
-        
-
-    }
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <strong>Burial Information: @Model.BurialMain.Id</strong>
+            <ul>
+                <li class="list-group-item">Square North South: @Model.BurialMain.Squarenorthsouth</li>
+                <li class="list-group-item">Head Direction: @Model.BurialMain.Headdirection</li>
+                <li class="list-group-item">Sex: @Model.BurialMain.Sex</li>
+                <li class="list-group-item">North South: @Model.BurialMain.Northsouth</li>
+                <li class="list-group-item">Depth: @Model.BurialMain.Depth</liclass="list-group-item">
+                <li class="list-group-item">East West: @Model.BurialMain.Eastwest</li>
+                <li class="list-group-item">Adult Sub Adult: @Model.BurialMain.Adultsubadult</li>
+                <li class="list-group-item">Facebundles: @Model.BurialMain.Facebundles</li>
+                <li class="list-group-item">South To Head: @Model.BurialMain.Southtohead</li>
+                <li class="list-group-item">Preservation: @Model.BurialMain.Preservation</li>
+                <li class="list-group-item">Fieldbook Page: @Model.BurialMain.Fieldbookpage</li>
+                <li class="list-group-item">Square East West: @Model.BurialMain.Squareeastwest</li>
+                <li class="list-group-item">Goods: @Model.BurialMain.Goods</li>
+                <li class="list-group-item">Text: @Model.BurialMain.Text</li>
+                <li class="list-group-item">Wrapping: @Model.BurialMain.Wrapping</li>
+                <li class="list-group-item">Hair Color: @Model.BurialMain.Haircolor</li>
+                <li class="list-group-item">West To Head: @Model.BurialMain.Westtohead</li>
+                <li class="list-group-item">Samples Collected: @Model.BurialMain.Samplescollected</li>
+                <li class="list-group-item">Area: @Model.BurialMain.Area</li>
+                <li class="list-group-item">Burial Id: @Model.BurialMain.Burialid</li>
+                <li class="list-group-item">Length: @Model.BurialMain.Length</li>
+                <li class="list-group-item">Burial Number: @Model.BurialMain.Burialnumber</li>
+                <li class="list-group-item">Data Expert Initials: @Model.BurialMain.Dataexpertinitials</li>
+                <li class="list-group-item">West To Feet: @Model.BurialMain.Westtofeet</li>
+                <li class="list-group-item">Age At Death: @Model.BurialMain.Ageatdeath</li>
+                <li class="list-group-item">South To Feet: @Model.BurialMain.Southtofeet</li>
+                <li class="list-group-item">Excavation Recorder: @Model.BurialMain.Excavationrecorder</li>
+                <li class="list-group-item">Photos: @Model.BurialMain.Photos</li>
+                <li class="list-group-item">Hair: @Model.BurialMain.Hair</li>
+                <li class="list-group-item">Burial Materials: @Model.BurialMain.Burialmaterials</li>
+                <li class="list-group-item">Fieldbook Excavation Year: @Model.BurialMain.Fieldbookexcavationyear</li>
+                <li class="list-group-item">Cluster Number: @Model.BurialMain.Clusternumber</li>
+                <li class="list-group-item">Shaft Number: @Model.BurialMain.Shaftnumber</li>
+            </ul>
+        </li>
+        @foreach (var textile in Model.Textiles)
+        {
+            <li class="list-group-item">
+                <strong>Textile Information (ID: @textile.Id)</strong>
+                <ul>
+                    <li class="list-group-item">Locale: @textile.Locale</li>
+                    <li class="list-group-item">Textile Id: @textile.Textileid</li>
+                    <li class="list-group-item">Description: @textile.Description</li>
+                    <li class="list-group-item">Burial Number: @textile.Burialnumber</li>
+                    <li class="list-group-item">Estimated Period: @textile.Estimatedperiod</li>
+                    <li class="list-group-item">Sample Date: @textile.Sampledate</li>
+                    <li class="list-group-item">Photographed Date: @textile.Photographeddate</li>
+                    <li class="list-group-item">Direction: @textile.Direction</li>
+                </ul>
+            </li>
+        }
+    </ul>
+    
+    <br />
+    <br />
+     <br />
+     <br />
+     <br />
+     <br />
 </div>
