@@ -41,6 +41,8 @@ namespace INTEX2_group1_3
             {
                 options.SignIn.RequireConfirmedAccount = true;
                 options.Tokens.AuthenticatorTokenProvider = TokenOptions.DefaultAuthenticatorProvider;
+               
+               
             })
             .AddEntityFrameworkStores<PostgreSqlContext>()
             .AddDefaultTokenProviders();
