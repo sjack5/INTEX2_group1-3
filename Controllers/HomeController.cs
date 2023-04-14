@@ -221,7 +221,7 @@ namespace INTEX2_group1_3.Controllers
             return View(x);
         }
         //public IActionResult Filter(string sex, string burialDepth, string estimateStature, string ageAtDeath, string headDirection, string burialId, string hairColor, string presenceFaceBundle)
-        //{
+        //{ 
         //    var burialsQuery = context.Burialmain.AsQueryable();
 
         //    if (!string.IsNullOrEmpty(sex))
