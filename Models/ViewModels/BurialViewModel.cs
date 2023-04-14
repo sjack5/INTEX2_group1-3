@@ -10,5 +10,6 @@ namespace INTEX2_group1_3.Models.ViewModels
         public FilterForm FilterForm { get; set; }
         public List<Burialmain>? Burials { get; set; }
         public PageInfo? PageInfo { get; set; }
+
     }
 }

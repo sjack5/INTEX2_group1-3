@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Records";
 }
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 <br />
 <br />
 <br />
@@ -29,91 +30,91 @@
             {
                 <a class="btn btn-outline-primary button-block mb-3" asp-area="" asp-controller="Home" asp-action="Add">Add a Burial</a>
             }
-                <form method="post" asp-controller="Home" asp-action="Search">
-                    <div class="collapse" id="filtersCollapse">
-                        <div class="card card-body">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <select name="area">
-                                        <option value="">Burial Direction</option>
-                                        @foreach (string burialDirection in Model.FilterForm.BurialDirections)
-                                        {
-                                            <option name="filterDirection" value="@burialDirection">@burialDirection</option>
-                                        }
-                                    </select>
-                                </div>
-                                <div class="col-md-3">
-                                    <select name="burialnumber">
-                                        <option value="">Burial Number</option>
-                                        @foreach (string burialnumber in Model.FilterForm.Burialnumbers)
-                                        {
-                                            <option value="@burialnumber">@burialnumber</option>
-                                        }
-                                    </select>
-                                </div>
-                                <div class="col-md-3">
-                                    <select name="depth">
-                                        <option value="">Depth</option>
-                                        @foreach (string depth in Model.FilterForm.Depths)
-                                        {
-                                            <option value="@depth">@depth</option>
-                                        }
-                                    </select>
-                                </div>
-                                <div class="col-md-3">
-                                    <select name="headdirection">
-                                        <option option value="">Head Direction</option>
-                                        @foreach (string headdirection in Model.FilterForm.Headdirections)
-                                        {
-                                            <option value="@headdirection">@headdirection</option>
-                                        }
-                                    </select>
-                                </div>
-                                <div class="col-md-3">
-                                    <select name="ageatdeath">
-                                        <option option value="">Age at Death</option>
-                                        @foreach (string ageatdeath in Model.FilterForm.Ageatdeaths)
-                                        {
-                                            <option value="@ageatdeath">@ageatdeath</option>
-                                        }
-                                    </select>
-                                </div>
-                                <div class="col-md-3">
-                                    <select name="length">
-                                        <option option value="">Length</option>
-                                        @foreach (string length in Model.FilterForm.Lengths)
-                                        {
-                                            <option value="@length">@length</option>
-                                        }
-                                    </select>
-                                </div>
-                                <div class="col-md-3">
-                                    <select name="sex">
-                                        <option option value="">Sex</option>
-                                        @foreach (string sex in Model.FilterForm.Sexs)
-                                        {
-                                            <option value="@sex">@sex</option>
-                                        }
-                                    </select>
-                                </div>
-                                <div class="col-md-3">
-                                    <select>
-                                        <option option value="">Haircolor</option>
-                                        @foreach (string haircolor in Model.FilterForm.Haircolors)
-                                        {
-                                            <option value="@haircolor">@haircolor</option>
-                                        }
-                                    </select>
-                                </div>
-                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                    <br />
-                                    <button class="btn btn-outline-primary btn-sm" type="submit">Apply</button>
-                                </div>
+            <form method="post" asp-controller="Home" asp-action="Search">
+                <div class="collapse" id="filtersCollapse">
+                    <div class="card card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <select name="area">
+                                    <option value="">Burial Direction</option>
+                                    @foreach (string burialDirection in Model.FilterForm.BurialDirections)
+                                    {
+                                        <option name="filterDirection" value="@burialDirection">@burialDirection</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select name="burialnumber">
+                                    <option value="">Burial Number</option>
+                                    @foreach (string burialnumber in Model.FilterForm.Burialnumbers)
+                                    {
+                                        <option value="@burialnumber">@burialnumber</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select name="depth">
+                                    <option value="">Depth</option>
+                                    @foreach (string depth in Model.FilterForm.Depths)
+                                    {
+                                        <option value="@depth">@depth</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select name="headdirection">
+                                    <option option value="">Head Direction</option>
+                                    @foreach (string headdirection in Model.FilterForm.Headdirections)
+                                    {
+                                        <option value="@headdirection">@headdirection</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select name="ageatdeath">
+                                    <option option value="">Age at Death</option>
+                                    @foreach (string ageatdeath in Model.FilterForm.Ageatdeaths)
+                                    {
+                                        <option value="@ageatdeath">@ageatdeath</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select name="length">
+                                    <option option value="">Length</option>
+                                    @foreach (string length in Model.FilterForm.Lengths)
+                                    {
+                                        <option value="@length">@length</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select name="sex">
+                                    <option option value="">Sex</option>
+                                    @foreach (string sex in Model.FilterForm.Sexs)
+                                    {
+                                        <option value="@sex">@sex</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select>
+                                    <option option value="">Haircolor</option>
+                                    @foreach (string haircolor in Model.FilterForm.Haircolors)
+                                    {
+                                        <option value="@haircolor">@haircolor</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <br />
+                                <button class="btn btn-outline-primary btn-sm" type="submit">Apply</button>
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
@@ -136,30 +137,31 @@
     <tbody>
         @foreach (var x in Model.Burials)
         {
-        <tr>
-            <td>@x.Id</td>
-            <td>@x.Squarenorthsouth @x.Northsouth</td>
-            <td>@x.Squareeastwest @x.Eastwest</td>
-            <td>@x.Area</td>
-            <td>@x.Burialnumber</td>
-            <td>@x.Depth</td>
-            <td>@x.Headdirection</td>
-            <td>@x.Ageatdeath</td>
-            <td>@x.Length</td>
-            <td>@x.Sex</td>
-            <td>@x.Haircolor</td>
-            <td><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="detailsburialitem" asp-route-id="@x.Id">Details</a></td>
-            @if (User.Identity.IsAuthenticated)
-            {
-                <td><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="Edit" asp-route-id="@x.Id">Edit</a></td>
-                <td><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="Delete" asp-route-id="@x.Id">Delete</a></td>
-            }
+            <tr>
+                <td>@x.Id</td>
+                <td>@x.Squarenorthsouth @x.Northsouth</td>
+                <td>@x.Squareeastwest @x.Eastwest</td>
+                <td>@x.Area</td>
+                <td>@x.Burialnumber</td>
+                <td>@x.Depth</td>
+                <td>@x.Headdirection</td>
+                <td>@x.Ageatdeath</td>
+                <td>@x.Length</td>
+                <td>@x.Sex</td>
+                <td>@x.Haircolor</td>
+                <td><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="detailsburialitem" asp-route-id="@x.Id">Details</a></td>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <td><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="Edit" asp-route-id="@x.Id">Edit</a></td>
+                    <td><a class="nav-link scrollto" asp-area="" asp-controller="Home" asp-action="Delete" asp-route-id="@x.Id">Delete</a></td>
+                }
             </tr>
         }
     </tbody>
 </table>
 
 <br />
+@await Html.PartialAsync("_PaginationPartial", Model.PageInfo)
 
 
 

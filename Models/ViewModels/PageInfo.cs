@@ -13,8 +13,8 @@ namespace INTEX2_group1_3.Models.ViewModels
         public int PageIndex { get; set; }
         public bool HasPreviousPage { get; set; }
         public bool HasNextPage { get; set; }
-
-        //Figure out how many pages we need
-        public int TotalPages => (int)Math.Ceiling((double)TotalBurials / BurialsPerPage);
+        public int TotalNumBurials { get; set; }
+        public int TotalPages => (int)Math.Ceiling((decimal)TotalNumBurials / BurialsPerPage);
     }
+
 }
