@@ -13,7 +13,7 @@ using LinqKit;
 using System.Linq.Expressions;
 namespace INTEX2_group1_3.Controllers
 {
-    [RequireHttps]
+    
     public class HomeController : Controller
     {
         //private  IBurialRepository repo;
@@ -24,7 +24,7 @@ namespace INTEX2_group1_3.Controllers
             context = con;
         }
 
-        [RequireHttps]
+        
         public IActionResult Index()
         {
             return View();
@@ -37,17 +37,17 @@ namespace INTEX2_group1_3.Controllers
         {
             return View();
         }
-        [RequireHttps]
+        
         public IActionResult SupervisedPage()
         {
             return View();
         }
-        [RequireHttps]
+       
         public IActionResult UnsupervisedPage()
         {
             return View();
         }
-        [RequireHttps]
+        
         //[HttpGet]
         //[RequireHttps]
         //public IActionResult Search(string burialDirection, int pageNum = 1)
@@ -77,8 +77,9 @@ namespace INTEX2_group1_3.Controllers
             var length = context.Burialmain.Select(x => x.Length).Distinct().ToList();
             var sex = context.Burialmain.Select(x => x.Sex).Distinct().ToList();
             var haircolor = context.Burialmain.Select(x => x.Haircolor).Distinct().ToList();
-
-
+            var burialsQuery = context.Burialmain.AsQueryable();
+            int totalNumFilteredBurials = burialsQuery.Count();
+            
             var x = new BurialViewModel
             {
 
@@ -105,7 +106,7 @@ namespace INTEX2_group1_3.Controllers
 
                 PageInfo = new PageInfo
                 {
-                    TotalNumBurials = context.Burialmain.Count(),
+                    TotalNumBurials = totalNumFilteredBurials,
                     BurialsPerPage = pageSize,
                     CurrentPage = pageNum
                 }
@@ -121,8 +122,9 @@ namespace INTEX2_group1_3.Controllers
         }
 
         [HttpPost]
-        public IActionResult Search(IFormCollection form)
+        public IActionResult Search(IFormCollection form, int pageNum = 1)
         {
+            int pageSize = 50;
             // install expressions
             var burialsQuery = context.Burialmain.AsEnumerable().AsQueryable();
             var filters = new List<Expression<Func<Burialmain, bool>>>();
@@ -172,7 +174,9 @@ namespace INTEX2_group1_3.Controllers
             if (combinedFilters != null)
             {
                 burialsQuery = burialsQuery.Where(combinedFilters);
+                
             }
+            int totalNumFilteredBurials = burialsQuery.Count();
             var burialDirection = context.Burialmain.Select(x => x.Squareeastwest).Distinct().Where(x => !string.IsNullOrEmpty(x)).ToList();
             var burialnumber = context.Burialmain.Select(x => x.Burialnumber).Distinct().Where(x => !string.IsNullOrEmpty(x)).ToList();
             var depth = context.Burialmain.Select(x => x.Depth).Distinct().ToList();
@@ -181,7 +185,11 @@ namespace INTEX2_group1_3.Controllers
             var length = context.Burialmain.Select(x => x.Length).Distinct().ToList();
             var sex = context.Burialmain.Select(x => x.Sex).Distinct().ToList();
             var haircolor = context.Burialmain.Select(x => x.Haircolor).Distinct().ToList();
-
+            var paginatedBurials = burialsQuery
+                .OrderBy(x => x.Id)
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
 
             var x = new BurialViewModel
             {
@@ -198,7 +206,16 @@ namespace INTEX2_group1_3.Controllers
                     Haircolors = haircolor,
 
                 },
-                Burials = burialsQuery.ToList()
+                
+                Burials = paginatedBurials,
+
+
+                PageInfo = new PageInfo
+                {
+                    TotalNumBurials = totalNumFilteredBurials,
+                    BurialsPerPage = pageSize,
+                    CurrentPage = pageNum
+                }
             };
 
             return View(x);
